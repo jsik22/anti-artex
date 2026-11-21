@@ -18,7 +18,7 @@
 | `tests/` | 회귀 시험(정상·공격형 트래픽 모양) |
 | `docs/` | 지문 근거, 출처 |
 
-## 현재 룰 (v0.1.0, 실측 전)
+## 현재 룰 (v0.2.0, 실측 전)
 
 | sid | 찾는 것 | 근거 |
 |---|---|---|
@@ -27,5 +27,12 @@
 | 9278303 | UA `Mozilla/5.0 (spa-api-recon` (크롤러·정적 수집 2종) | `skills/api-recon/scripts/*.py` — 다른 공개 묶음에 없음 |
 | 9278304 | POLICY: UA `artex-selfupdate`(내부에서 ARTEX 콘솔이 업데이트하는 흔적) | `selfupdate/*.go` |
 | 9278305 | 백도어 콘솔 로그인 명령(`captcha`가 `!`로 시작) | 제3자 포렌식(tomicdd/artex 이미지) |
+
+| 9278306 | 포크 enrich UA(artifex·antifox·wsartex·prtseek) | 포크 34개 비교 |
+| 9278307 | 포크 도구 UA의 ARTEX 토큰(`(ARTEX)`, `ARTEX-…/`) | 포크 05·focus-agent·포크 19 |
+| 9278308 | POLICY: 포크 자가 업데이트 UA | scopeweaver·pojun·artifex·antifox·prtseek·포크 01 |
+| 9278309~11 | 포크 정찰 UA(YCode-recon, prtseek 관찰, Artifex-ct-subs) | 각 포크 |
+
+포크 비교: `docs/forks-2026-11-21.json`. `norma/0.4`는 모든 포크에서 그대로였다.
 
 시험: `bash tests/run.sh RESULTS.md` (합성 pcap, 컨테이너 `--network none`).

@@ -58,6 +58,22 @@ CASES = [
     ("X-login-nocaptcha", "benign", False, "captcha 없는 로그인", req("POST", "/api/auth/login", BROWSER, JSON, json.dumps({"username": "u", "password": "!startswithbang"}))),
     ("X-other-login-bang", "benign", False, "다른 경로의 captcha '!' 값", req("POST", "/login", BROWSER, JSON, json.dumps({"captcha": "!id"}))),
     ("X-github-ui", "benign", False, "GitHub API 일반 UA", req("GET", "/repos/x/y/releases/latest", "Go-http-client/1.1", host="api.github.com")),
+    ("F-artifex-enrich", "fork-shape", True, "포크 16 enrich UA", req("GET", "/", "artifex-enrich/1.0")),
+    ("F-antifox-enrich", "fork-shape", True, "AntiFox 포크 enrich UA", req("GET", "/", "antifox-enrich/1.0")),
+    ("F-wsartex-enrich", "fork-shape", True, "포크 20 enrich UA", req("GET", "/", "wsartex-enrich/1.0")),
+    ("F-prtseek-enrich", "fork-shape", True, "prtseek enrich UA", req("GET", "/", "prtseek-enrich/1.0")),
+    ("F-artex-http-shell", "fork-shape", True, "포크 05·focus-agent http_shell UA", req("GET", "/admin", "Mozilla/5.0 (ARTEX)")),
+    ("F-artex-nuclei-fp", "fork-shape", True, "포크 19 Nuclei 지문 UA", req("GET", "/", "Mozilla/5.0 (compatible; ARTEX-Nuclei-Fingerprint/1.0)")),
+    ("F-artex-subfinder", "fork-shape", True, "포크 19 Subfinder MCP UA", req("GET", "/", "Mozilla/5.0 (compatible; ARTEX-Subfinder-MCP/1.0)")),
+    ("F-ycode-recon", "fork-shape", True, "ycode-auto-pentest recon UA", req("GET", "/", "YCode-recon/0.3")),
+    ("F-prtseek-obs", "fork-shape", True, "prtseek HTTP 관찰 UA", req("GET", "/", "prtseek/1.2 HTTP observation")),
+    ("F-artifex-ct", "fork-shape", True, "ARTIFEX 인증서 하위 도메인 UA", req("GET", "/", "Mozilla/5.0 (X11; Linux x86_64) Artifex-ct-subs")),
+    ("F-scopeweaver-upd", "fork-shape", True, "ScopeWeaver 포크 자가 업데이트(POLICY)", req("GET", "/repos/x/scopeweaver/releases/latest", "scopeweaver-selfupdate", host="api.github.com")),
+    ("F-pojun-upd", "fork-shape", True, "포크 30 자가 업데이트(POLICY)", req("GET", "/repos/x/Pojun/releases/latest", "pojun-selfupdate", host="api.github.com")),
+    ("F-artex-update-check", "fork-shape", True, "포크 01 업데이트 확인(POLICY)", req("GET", "/repos/x/ARTEX/releases/latest", "artex-update-check", host="api.github.com")),
+    ("X-enrich-generic", "benign", False, "다른 제품의 -enrich UA", req("GET", "/", "geo-enrich/2.3")),
+    ("X-artexpo", "benign", False, "ARTEX 비슷한 단어가 든 UA", req("GET", "/", "Mozilla/5.0 (compatible; ArtExpoBot/1.0; +https://artexpo.example)")),
+    ("X-prtseek-word", "benign", False, "prtseek 블로그 방문 브라우저(쿼리)", req("GET", "/?ref=prtseek", BROWSER)),
 ]
 
 

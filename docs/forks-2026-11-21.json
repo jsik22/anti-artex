@@ -1,0 +1,2903 @@
+{
+ "원본 v0.3.15 백업@main": {
+  "repo": "원본 v0.3.15 백업",
+  "branch": "main",
+  "head": "2026-10-08T11:05:50Z f3e3f54",
+  "truncated": false,
+  "nfiles": 601,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/github.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/stage.go": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "SAME-BLOB"
+   },
+   "go.mod": {
+    "status": "SAME-BLOB"
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "enrich/enrich.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 0,
+  "other": {}
+ },
+ "포크 01@main": {
+  "repo": "포크 01",
+  "branch": "main",
+  "head": "2026-11-21T00:34:03Z 5876d51",
+  "truncated": false,
+  "nfiles": 1005,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "BLOB-CHANGED",
+    "lines": []
+   },
+   "selfupdate/github.go": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "selfupdate/stage.go": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "UA = \"Mozilla/5.0 (spa-api-recon spider)\"",
+     "h = {\"User-Agent\": UA}"
+    ]
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "UA = \"Mozilla/5.0 (spa-api-recon)\"",
+     "req = urllib.request.Request(url, headers={\"User-Agent\": UA})"
+    ]
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"${ARTEX_BIND_ADDR:-127.0.0.1}:8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.4.11",
+     "replace github.com/Autumn-27/norma => github.com/포크 01의 Norma v0.4.11"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   ".env.example",
+   "CHANGELOG.md",
+   "README.md",
+   "agent/provider.go",
+   "agent/user_agent_test.go",
+   "db/config.go",
+   "db/schema.sql",
+   "egress/current_test.go",
+   "egress/egress.go",
+   "egress/egress_test.go",
+   "server/dto.go",
+   "server/llm_key_endpoint_test.go",
+   "server/noise_settings_test.go",
+   "server/server.go",
+   "server/server_mgmt.go",
+   "server/side_questions.go",
+   "server/update_check.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/bbot-recon/SKILL.md",
+   "skills/playwright-cli/references/running-code.md",
+   "traffic/replay.go",
+   "web/src/app/(main)/system/llm/page.tsx",
+   "web/src/i18n/locales/tr.json",
+   "web/src/i18n/locales/zh-CN.json",
+   "web/src/lib/api.ts",
+   "web/src/lib/mock/data.ts",
+   "web/src/lib/types.ts"
+  ],
+  "cand_count": 14,
+  "other": {
+   "agent/provider.go": [
+    "// UserAgent, when non-empty, overrides the User-Agent header on every outbound",
+    "// userAgent, when non-empty, is set as the User-Agent header on every request.",
+    "// Custom User-Agent: override only when configured, so an empty value keeps the",
+    "req.Header.Set(\"User-Agent\", t.userAgent)",
+    "return &http.Client{Transport: quotaAwareTransport{base: transport, sessionHeaderKey: strings.TrimSpace(sessionHeaderKey), userAgent: strings.TrimSpace(userAgent)}}, nil",
+    "ua := strings.TrimSpace(raw)",
+    "if ua == \"\" {",
+    "return ua, nil"
+   ],
+   "agent/user_agent_test.go": [
+    "// given userAgent, and returns what actually reached the wire.",
+    "t.Fatalf(\"User-Agent = %q, want %q\", got, want)",
+    "t.Fatalf(\"User-Agent = %q, want the default Go-http-client UA when unset\", got)",
+    "if ua, err := ValidateUserAgent(\"  \" + want + \"  \"); err != nil || ua != want {",
+    "t.Fatalf(\"printable value: got (%q, %v), want (%q, nil)\", ua, err, want)",
+    "if ua, err := ValidateUserAgent(\"   \"); err != nil || ua != \"\" {",
+    "t.Fatalf(\"blank user agent: got (%q, %v), want (\\\"\\\", nil)\", ua, err)",
+    "if ua, err := ValidateUserAgent(\"  my-app/1.0  \"); err != nil || ua != \"my-app/1.0\" {",
+    "t.Fatalf(\"trim: got (%q, %v), want (\\\"my-app/1.0\\\", nil)\", ua, err)"
+   ],
+   "db/config.go": [
+    "// UserAgent, when non-empty, overrides the User-Agent header on every outbound",
+    "r.Connect.Attempts, r.Connect.IntervalMS, r.Empty.Attempts, r.Empty.IntervalMS, r.Stream.Attempts, r.Stream.IntervalMS, p.UserAgent, p.ID)",
+    "r.Connect.Attempts, r.Connect.IntervalMS, r.Empty.Attempts, r.Empty.IntervalMS, r.Stream.Attempts, r.Stream.IntervalMS, p.UserAgent, p.ID)"
+   ],
+   "egress/current_test.go": [
+    "t.Setenv(\"ARTEX_TARGET_USER_AGENT\", \"artex-test/1\")",
+    "t.Fatalf(\"off Dynamic: err=%v same request=%v UA=%q\", err, base.got == req, req.Header.Get(\"User-Agent\"))",
+    "t.Fatalf(\"balanced UserAgent = %q\", p.UserAgent)"
+   ],
+   "egress/egress.go": [
+    "UserAgent  string        // ARTEX_TARGET_USER_AGENT, set on requests that have none; \"\" = unchanged",
+    "if ua := strings.TrimSpace(os.Getenv(\"ARTEX_TARGET_USER_AGENT\")); strings.ContainsFunc(ua, unicode.IsControl) {",
+    "p.UserAgent = ua",
+    "if ua := t.g.p.UserAgent; ua != \"\" && req.Header.Get(\"User-Agent\") == \"\" {",
+    "req.Header.Set(\"User-Agent\", ua)"
+   ],
+   "egress/egress_test.go": [
+    "if ua := got.Load().(string); !strings.HasPrefix(ua, \"Go-http-client/\") {",
+    "t.Fatalf(\"unset: User-Agent = %q, want the Go default\", ua)",
+    "p.UserAgent = \"engagement-ua\"",
+    "if ua := got.Load().(string); ua != \"engagement-ua\" {",
+    "t.Fatalf(\"set: User-Agent = %q\", ua)",
+    "t.Setenv(\"ARTEX_TARGET_USER_AGENT\", \"x/1\")"
+   ],
+   "server/dto.go": [
+    "// Custom User-Agent: when non-empty, every outbound LLM request overrides its",
+    "UserAgent:        p.UserAgent,"
+   ],
+   "server/llm_key_endpoint_test.go": [
+    "\"provider\": \"anthropic\", \"model\": \"m\", \"base_url\": fake.URL, \"api_key\": \"k\", \"streaming\": false, \"user_agent\": ua,",
+    "t.Fatalf(\"control character in user_agent: status %d hits=%d body=%s\", rec.Code, hits.Load(), rec.Body.String())",
+    "t.Fatalf(\"printable user_agent: status %d body=%s\", rec.Code, rec.Body.String())",
+    "if ua, _ := gotUA.Load().(string); hits.Load() != 1 || ua != want {",
+    "t.Fatalf(\"test request User-Agent = %q (hits=%d), want %q\", ua, hits.Load(), want)"
+   ],
+   "server/noise_settings_test.go": [
+    "t.Setenv(\"ARTEX_TARGET_USER_AGENT\", \"artex-noise-test/1\")"
+   ],
+   "server/server.go": [
+    "cfg.UserAgent = p.UserAgent",
+    "userAgent = p.UserAgent",
+    "MaxTokens: maxTokens, MaxTokensField: maxTokensField, SessionHeaderKey: sessionHeaderKey, UserAgent: userAgent,",
+    "cfg.UserAgent = p.UserAgent",
+    "cfg.UserAgent = strings.TrimSpace(req.UserAgent)",
+    "if stored != nil && cfg.UserAgent == \"\" {",
+    "cfg.UserAgent = strings.TrimSpace(stored.UserAgent)",
+    "ua, err := agent.ValidateUserAgent(cfg.UserAgent)",
+    "cfg.UserAgent = ua"
+   ],
+   "server/server_mgmt.go": [
+    "// Custom User-Agent: trim and reject control characters / over-long values so a",
+    "ua, err := agent.ValidateUserAgent(p.UserAgent)",
+    "p.UserAgent = ua"
+   ],
+   "server/side_questions.go": [],
+   "server/update_check.go": [
+    "// fetchLatestRelease sends only a generic User-Agent: no cookies, no host or",
+    "req.Header.Set(\"User-Agent\", \"artex-update-check\")"
+   ],
+   "traffic/replay.go": [
+    "// An empty value keeps net/http from adding its default User-Agent: a"
+   ]
+  }
+ },
+ "한국어·영문 재배포판@main": {
+  "repo": "한국어·영문 재배포판",
+  "branch": "main",
+  "head": "2026-11-19T15:55:08Z 06b36d7",
+  "truncated": false,
+  "nfiles": 794,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-enrich/1.0\")"
+    ]
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"${ARTEX_BIND:-127.0.0.1}:8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.4.4"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   ".github/workflows/detections.yml",
+   "CHANGELOG.en.md",
+   "CHANGELOG.md",
+   "CONTRIBUTING.en.md",
+   "CONTRIBUTING.md",
+   "MAINTAINING.en.md",
+   "MAINTAINING.md",
+   "README.es.md",
+   "README.ja.md",
+   "README.ko.md",
+   "README.md",
+   "detections/README.ko.md",
+   "detections/README.md",
+   "detections/attack/README.ko.md",
+   "detections/attack/README.md",
+   "detections/attack/artex_navigator_layer.json",
+   "detections/indicators/README.ko.md",
+   "detections/indicators/README.md",
+   "detections/indicators/artex_indicators.csv",
+   "detections/indicators/artex_indicators.misp.json",
+   "detections/sigma/README.ko.md",
+   "detections/sigma/README.md",
+   "detections/sigma/artex_enrich_user_agent.yml",
+   "detections/sigma/artex_selfupdate_egress.yml",
+   "detections/sigma/correlation/artex_enrich_fanout.yml",
+   "detections/sigma/correlation/artex_enrich_scan_velocity.yml",
+   "detections/suricata/README.ko.md",
+   "detections/suricata/README.md",
+   "detections/suricata/artex.rules",
+   "detections/tests/README.ko.md",
+   "detections/tests/README.md",
+   "detections/tests/indicators/check.py",
+   "detections/tests/indicators/run.sh",
+   "detections/tests/misp/check.py",
+   "detections/tests/sigma_match/events/artex_enrich_user_agent.json",
+   "detections/tests/sigma_match/events/artex_selfupdate_egress.json",
+   "detections/tests/sigma_match/events/correlation/artex_enrich_fanout.json",
+   "detections/tests/sigma_match/events/correlation/artex_enrich_scan_velocity.json",
+   "detections/tests/suricata/gen_pcap.py",
+   "detections/triage/README.ko.md",
+   "detections/triage/artex_host_triage.py",
+   "docs/defense-en.md",
+   "docs/defense-ko.md",
+   "enrich/enrich.go",
+   "scripts/check-external-links.py",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 11,
+  "other": {
+   ".github/workflows/detections.yml": [],
+   "detections/sigma/artex_enrich_user_agent.yml": [
+    "change this User-Agent, so its ABSENCE does not imply safety. Treat it as a supporting",
+    "cs-user-agent: 'artex-enrich/1.0'"
+   ],
+   "detections/sigma/artex_selfupdate_egress.yml": [
+    "c-useragent: 'artex-selfupdate'"
+   ],
+   "detections/sigma/correlation/artex_enrich_fanout.yml": [],
+   "detections/sigma/correlation/artex_enrich_scan_velocity.yml": [
+    "User-Agent, so a quiet result is inconclusive, not proof of safety; see the behaviour-based"
+   ],
+   "detections/tests/indicators/check.py": [],
+   "detections/tests/indicators/run.sh": [],
+   "detections/tests/misp/check.py": [
+    "\"http.user-agent\": (\"user-agent\", \"Network activity\"),"
+   ],
+   "detections/tests/suricata/gen_pcap.py": [
+    "source, each carrying a chosen User-Agent, so `suricata -r` can be run offline",
+    "def http_request(user_agent: str) -> bytes:",
+    "f\"User-Agent: {user_agent}\\r\\n\"",
+    "def flow(index: int, user_agent: str, t0: float):",
+    "user_agent = sys.argv[2]",
+    "packets.extend(flow(i, user_agent, BASE_EPOCH + i * interval))",
+    "print(f\"wrote {len(packets)} packets across {num_flows} flows to {out} (UA={user_agent!r})\")"
+   ],
+   "detections/triage/artex_host_triage.py": [],
+   "scripts/check-external-links.py": [
+    "\"User-Agent\": BROWSER_UA,"
+   ]
+  }
+ },
+ "포크 02@main": {
+  "repo": "포크 02",
+  "branch": "main",
+  "head": "2026-11-14T13:19:39Z 6997a46",
+  "truncated": false,
+  "nfiles": 800,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "BLOB-CHANGED",
+    "lines": []
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": []
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": []
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "value = os.environ.get(\"ARTEX_HTTP_USER_AGENT\", \"\")",
+     "ua = user_agent(user_agent_value)",
+     "h = {\"User-Agent\": ua} if ua else {}",
+     "ap.add_argument(\"--user-agent\", default=None, help=\"User-Agent override; default: ARTEX_HTTP_USER_AGENT or random browser sample\")",
+     "ua = user_agent(args.user_agent)"
+    ]
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "value = os.environ.get(\"ARTEX_HTTP_USER_AGENT\", \"\")",
+     "ua = user_agent(user_agent_value)",
+     "req = urllib.request.Request(url, headers={\"User-Agent\": ua} if ua else {})",
+     "ap.add_argument(\"--user-agent\", default=None, help=\"User-Agent override; default: ARTEX_HTTP_USER_AGENT or random browser sample\")",
+     "ua = user_agent(args.user_agent)"
+    ]
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.4.3"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   ".env.example",
+   "CHANGELOG.md",
+   "HTTP_USER_AGENT.md",
+   "README.md",
+   "agent/prompt.go",
+   "agent/webfetch_test.go",
+   "enrich/enrich_test.go",
+   "internal/httpidentity/useragent.go",
+   "internal/httpidentity/useragent_test.go",
+   "internal/webfetch/webfetch.go",
+   "internal/webfetch/webfetch_test.go",
+   "selfupdate/github_test.go",
+   "server/egress_probe_test.go",
+   "server/http_identity_test.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/api-recon/scripts/test_user_agent.py",
+   "skills/playwright-cli/references/running-code.md",
+   "traffic/traffic.go",
+   "traffic/useragent_test.go"
+  ],
+  "cand_count": 13,
+  "other": {
+   "agent/prompt.go": [],
+   "agent/webfetch_test.go": [
+    "for _, ua := range []string{\"\", \"Captured-UA/1.0\"} {",
+    "t.Run(ua, func(t *testing.T) {",
+    "t.Setenv(\"ARTEX_HTTP_USER_AGENT\", ua)",
+    "if ua == \"\" && !strings.HasPrefix(r.UserAgent(), \"Mozilla/5.0 \") {"
+   ],
+   "enrich/enrich_test.go": [
+    "for _, ua := range []string{\"\", \"Captured-UA/1.0\"} {",
+    "t.Run(ua, func(t *testing.T) {",
+    "t.Setenv(\"ARTEX_HTTP_USER_AGENT\", ua)",
+    "if got := r.UserAgent(); ua == \"\" && !strings.HasPrefix(got, \"Mozilla/5.0 \") {",
+    "t.Errorf(\"User-Agent = %q, want %q\", got, ua)"
+   ],
+   "internal/httpidentity/useragent.go": [
+    "req.Header.Set(\"User-Agent\", UserAgent())"
+   ],
+   "internal/httpidentity/useragent_test.go": [
+    "t.Setenv(\"ARTEX_HTTP_USER_AGENT\", tc.value)",
+    "t.Errorf(\"User-Agent = %q, want %q\", got, tc.want)"
+   ],
+   "internal/webfetch/webfetch.go": [
+    "userAgent := httpidentity.UserAgent()",
+    "req.Header.Set(\"User-Agent\", userAgent)",
+    "r2.Header.Set(\"User-Agent\", userAgent)"
+   ],
+   "internal/webfetch/webfetch_test.go": [
+    "for _, ua := range []string{\"\", \"Captured-UA/1.0\"} {",
+    "t.Run(route+\"/\"+ua, func(t *testing.T) {",
+    "t.Setenv(\"ARTEX_HTTP_USER_AGENT\", ua)",
+    "if ua == \"\" && !strings.HasPrefix(got, \"Mozilla/5.0 \") {",
+    "t.Errorf(\"User-Agent = %q, want %q\", got, ua)",
+    "req.Header.Set(\"User-Agent\", \"\")",
+    "t.Setenv(\"ARTEX_HTTP_USER_AGENT\", \"Captured-UA/1.0\")",
+    "t.Errorf(\"User-Agent = %q\", r.UserAgent())",
+    "t.Setenv(\"ARTEX_HTTP_USER_AGENT\", \"Before-Tool-Creation\")",
+    "t.Setenv(\"ARTEX_HTTP_USER_AGENT\", want)"
+   ],
+   "selfupdate/github_test.go": [
+    "t.Setenv(\"ARTEX_HTTP_USER_AGENT\", tc.env)",
+    "t.Errorf(\"User-Agent = %q, want %q\", got, tc.want)"
+   ],
+   "server/egress_probe_test.go": [
+    "for _, ua := range []string{\"\", \"Captured-UA/1.0\"} {",
+    "t.Run(ua, func(t *testing.T) {",
+    "t.Setenv(\"ARTEX_HTTP_USER_AGENT\", ua)",
+    "if got := r.UserAgent(); ua == \"\" && !strings.HasPrefix(got, \"Mozilla/5.0 \") {",
+    "t.Errorf(\"User-Agent = %q, want %q\", got, ua)"
+   ],
+   "server/http_identity_test.go": [
+    "{name: \"override\", env: \"Environment-UA/1.0\", want: \"Explicit-UA/1.0\", headers: map[string]string{\"user-agent\": \"Explicit-UA/1.0\"}},",
+    "{name: \"explicit-empty\", env: \"Environment-UA/1.0\", headers: map[string]string{\"User-Agent\": \"\"}},",
+    "t.Setenv(\"ARTEX_HTTP_USER_AGENT\", tc.env)",
+    "t.Errorf(\"User-Agent = %q, want %q\", got, tc.want)"
+   ],
+   "skills/api-recon/scripts/test_user_agent.py": [
+    "self.assertTrue(all(ua == expected for _, ua, _ in seen), seen)",
+    "with patch.dict(os.environ, {\"ARTEX_HTTP_USER_AGENT\": \"\"}), patch.object(module.secrets, \"choice\", return_value=sample) as choose:",
+    "with patch.dict(os.environ, {\"ARTEX_HTTP_USER_AGENT\": \"Configured-UA\"}), patch.object(module.secrets, \"choice\") as choose:",
+    "with patch.dict(os.environ, {**DIRECT_ENV, \"ARTEX_HTTP_USER_AGENT\": value}):",
+    "(\"Environment-UA/1.0\", [\"--user-agent\", \"Override-UA/1.0\"], \"Override-UA/1.0\"),",
+    "(\"Environment-UA/1.0\", [\"--user-agent\", \"\"], None)):",
+    "env = dict(os.environ, **DIRECT_ENV, ARTEX_HTTP_USER_AGENT=env_ua)"
+   ],
+   "traffic/traffic.go": [
+    "f.Request.Header.Set(\"User-Agent\", \"\")"
+   ],
+   "traffic/useragent_test.go": [
+    "for _, ua := range []string{\"\", \"Captured-UA/1.0\"} {",
+    "t.Run(ua, func(t *testing.T) {",
+    "t.Errorf(\"forwarded User-Agent = %q, want %q\", got, ua)",
+    "if _, present := r.Header[\"User-Agent\"]; ua == \"\" && present {",
+    "flow.Request.Header.Set(\"User-Agent\", ua)",
+    "if ua == \"\" && strings.Contains(requestHeaderLines(flow.Request), \"User-Agent:\") {"
+   ]
+  }
+ },
+ "포크 03@main": {
+  "repo": "포크 03",
+  "branch": "main",
+  "head": "2026-11-17T06:08:11Z fd6376c",
+  "truncated": false,
+  "nfiles": 622,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "UA = \"Mozilla/5.0 (spa-api-recon spider)\"",
+     "h = {\"User-Agent\": UA}"
+    ]
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "UA = \"Mozilla/5.0 (spa-api-recon)\"",
+     "req = urllib.request.Request(url, headers={\"User-Agent\": UA})"
+    ]
+   },
+   "docker-compose.yml": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.4.3"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "enrich/enrich.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 0,
+  "other": {}
+ },
+ "포크 04@main": {
+  "repo": "포크 04",
+  "branch": "main",
+  "head": "2026-10-09T12:43:44Z 178d250",
+  "truncated": false,
+  "nfiles": 600,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "SAME-BLOB"
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "enrich/enrich.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 0,
+  "other": {}
+ },
+ "포크 05@main": {
+  "repo": "포크 05",
+  "branch": "main",
+  "head": "2026-09-19T16:09:20Z 48adc7f",
+  "truncated": false,
+  "nfiles": 788,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-enrich/1.0\")"
+    ]
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.3.8"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "enrich/enrich.go",
+   "guard/extract.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "server/assembly.go",
+   "session/http_shell.go",
+   "session/http_shell_enc.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/chains-ad/refs/ad-password-spray.md",
+   "skills/chains-app/refs/app-miniapp.md",
+   "skills/chains-meta/refs/meta-stuck-detect.md",
+   "skills/chains-priv/refs/priv-disablefunc.md",
+   "skills/chains-recon/refs/recon-when-enough.md",
+   "skills/chains-web/refs/web-cmdi.md",
+   "skills/chains-web/refs/web-ssti.md",
+   "skills/chains-web/refs/web-xxe.md",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 4,
+  "other": {
+   "guard/extract.go": [
+    "\"--data\": true, \"--header\": true, \"--proxy\": true, \"--user-agent\": true,"
+   ],
+   "server/assembly.go": [],
+   "session/http_shell.go": [
+    "req.Header.Set(\"User-Agent\", \"Mozilla/5.0 (ARTEX)\")"
+   ],
+   "session/http_shell_enc.go": [
+    "hreq.Header.Set(\"User-Agent\", \"Mozilla/5.0 (ARTEX)\")"
+   ]
+  }
+ },
+ "포크 06@main": {
+  "repo": "포크 06",
+  "branch": "main",
+  "head": "2026-11-07T07:28:38Z 556495c",
+  "truncated": false,
+  "nfiles": 1033,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "SAME-BLOB"
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "detections/README.ko.md",
+   "detections/README.md",
+   "detections/attack/README.ko.md",
+   "detections/attack/README.md",
+   "detections/attack/artex_navigator_layer.json",
+   "detections/indicators/README.ko.md",
+   "detections/indicators/README.md",
+   "detections/indicators/artex_indicators.csv",
+   "detections/indicators/artex_indicators.misp.json",
+   "detections/sigma/README.ko.md",
+   "detections/sigma/README.md",
+   "detections/sigma/artex_enrich_user_agent.yml",
+   "detections/sigma/artex_selfupdate_egress.yml",
+   "detections/sigma/correlation/artex_enrich_fanout.yml",
+   "detections/sigma/correlation/artex_enrich_scan_velocity.yml",
+   "detections/suricata/README.ko.md",
+   "detections/suricata/README.md",
+   "detections/suricata/artex.rules",
+   "detections/tests/README.ko.md",
+   "detections/tests/README.md",
+   "detections/tests/indicators/check.py",
+   "detections/tests/indicators/run.sh",
+   "detections/tests/misp/check.py",
+   "detections/tests/sigma_match/events/artex_enrich_user_agent.json",
+   "detections/tests/sigma_match/events/artex_selfupdate_egress.json",
+   "detections/tests/sigma_match/events/correlation/artex_enrich_fanout.json",
+   "detections/tests/sigma_match/events/correlation/artex_enrich_scan_velocity.json",
+   "detections/tests/suricata/gen_pcap.py",
+   "detections/triage/README.ko.md",
+   "detections/triage/artex_host_triage.py",
+   "docs/defense-en.md",
+   "docs/defense-ko.md",
+   "enrich/enrich.go",
+   "hunting/research.go",
+   "hunting/trends.go",
+   "investigation/plan.go",
+   "lab/offensive/api_discovery.py",
+   "lab/offensive/diagnostic_runner.py",
+   "lab/offensive/install_tools.py",
+   "lab/offensive/test_diagnostic_runner.py",
+   "lab/purple/check.py",
+   "lab/purple/collector/fixtures/apache-detection-only.log",
+   "lab/purple/collector/fixtures/apache-ftp-blocked.log",
+   "lab/purple/collector/fixtures/apache-sqli-blocked.log",
+   "scripts/check-external-links.py",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 18,
+  "other": {
+   "detections/sigma/artex_enrich_user_agent.yml": [
+    "change this User-Agent, so its ABSENCE does not imply safety. Treat it as a supporting",
+    "cs-user-agent: 'artex-enrich/1.0'"
+   ],
+   "detections/sigma/artex_selfupdate_egress.yml": [
+    "c-useragent: 'artex-selfupdate'"
+   ],
+   "detections/sigma/correlation/artex_enrich_fanout.yml": [],
+   "detections/sigma/correlation/artex_enrich_scan_velocity.yml": [
+    "User-Agent, so a quiet result is inconclusive, not proof of safety; see the behaviour-based"
+   ],
+   "detections/tests/indicators/check.py": [],
+   "detections/tests/indicators/run.sh": [],
+   "detections/tests/misp/check.py": [
+    "\"http.user-agent\": (\"user-agent\", \"Network activity\"),"
+   ],
+   "detections/tests/suricata/gen_pcap.py": [
+    "source, each carrying a chosen User-Agent, so `suricata -r` can be run offline",
+    "def http_request(user_agent: str) -> bytes:",
+    "f\"User-Agent: {user_agent}\\r\\n\"",
+    "def flow(index: int, user_agent: str, t0: float):",
+    "user_agent = sys.argv[2]",
+    "packets.extend(flow(i, user_agent, BASE_EPOCH + i * interval))",
+    "print(f\"wrote {len(packets)} packets across {num_flows} flows to {out} (UA={user_agent!r})\")"
+   ],
+   "detections/triage/artex_host_triage.py": [],
+   "hunting/research.go": [
+    "req.Header.Set(\"User-Agent\", \"AegisLoop-PublicResearch/1.0\")"
+   ],
+   "hunting/trends.go": [
+    "req.Header.Set(\"User-Agent\", \"AegisLoop-RSS/1.0\")"
+   ],
+   "investigation/plan.go": [],
+   "lab/offensive/api_discovery.py": [
+    "connection.request('GET', p.path or '/', headers={'User-Agent': 'AegisLoop-API-Discovery/1', 'Accept': 'text/html,application/json,text/javascript,*/*;q=0.1', 'Accept-Encoding': 'identity'})"
+   ],
+   "lab/offensive/diagnostic_runner.py": [
+    "request_headers = {'User-Agent': 'AegisLoop-Diagnostics/1', 'Accept-Encoding': 'identity', 'Connection': 'close'}"
+   ],
+   "lab/offensive/install_tools.py": [
+    "req = urllib.request.Request(url, headers={\"User-Agent\": \"AegisLoop-build\"})"
+   ],
+   "lab/offensive/test_diagnostic_runner.py": [
+    "robots = response(BASE + '/robots.txt', b'User-agent: *\\nDisallow: /private\\nSitemap: http://lab.example.test:3000/sitemap.xml\\n', **{'content-type': 'text/plain'})"
+   ],
+   "lab/purple/check.py": [
+    "headers = {'Host': 'purple-lab-target:8080', 'User-Agent': 'ARTEX-local-lab-check'}"
+   ],
+   "scripts/check-external-links.py": [
+    "\"User-Agent\": BROWSER_UA,"
+   ]
+  }
+ },
+ "포크 07@english-ui": {
+  "repo": "포크 07",
+  "branch": "english-ui",
+  "head": "2026-10-07T01:02:47Z f9642c1",
+  "truncated": false,
+  "nfiles": 611,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "SAME-BLOB"
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "enrich/enrich.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 0,
+  "other": {}
+ },
+ "포크 08@main": {
+  "repo": "포크 08",
+  "branch": "main",
+  "head": "2026-11-09T17:16:19Z 74d34c7",
+  "truncated": false,
+  "nfiles": 667,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "go.mod": {
+    "status": "SAME-BLOB"
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "enrich/enrich.go",
+   "githubsrc/client.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/components/finding-raw-packet-panel.tsx",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 1,
+  "other": {
+   "githubsrc/client.go": [
+    "req.Header.Set(\"User-Agent\", \"artex-github-import\")"
+   ]
+  }
+ },
+ "포크 09@main": {
+  "repo": "포크 09",
+  "branch": "main",
+  "head": "2026-11-16T06:07:38Z 6baf30e",
+  "truncated": false,
+  "nfiles": 631,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-enrich/1.0\")"
+    ]
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.4.3"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "enrich/enrich.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 0,
+  "other": {}
+ },
+ "포크 10@main": {
+  "repo": "포크 10",
+  "branch": "main",
+  "head": "2026-11-04T22:34:56Z 2bea670",
+  "truncated": false,
+  "nfiles": 444,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/github.go": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "selfupdate/stage.go": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.3.4"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "enrich/enrich.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 0,
+  "other": {}
+ },
+ "ScopeWeaver 포크@main": {
+  "repo": "ScopeWeaver 포크",
+  "branch": "main",
+  "head": "2026-11-18T05:56:51Z 1f33072",
+  "truncated": false,
+  "nfiles": 1456,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-enrich/1.0\")"
+    ]
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"scopeweaver-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"scopeweaver-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "UA = \"Mozilla/5.0 (spa-api-recon spider)\"",
+     "h = {\"User-Agent\": UA}"
+    ]
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "UA = \"Mozilla/5.0 (spa-api-recon)\"",
+     "req = urllib.request.Request(url, headers={\"User-Agent\": UA})"
+    ]
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.4.3",
+     "// Keep the originating tool context across timeout settlement; see third_party/norma/README.scopeweaver.md.",
+     "replace github.com/Autumn-27/norma => ./third_party/norma"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "adapters/opencode-sdk/README.es.md",
+   "adapters/opencode-sdk/README.ja.md",
+   "adapters/opencode-sdk/README.ko.md",
+   "adapters/opencode-sdk/README.md",
+   "adapters/opencode-sdk/README.zh-Hans.md",
+   "adapters/opencode-sdk/README.zh-Hant.md",
+   "adapters/opencode-sdk/test/native.test.mjs",
+   "agent/provider.go",
+   "agent/session_header_test.go",
+   "docs/VERIFICATION.md",
+   "docs/es/VERIFICATION.md",
+   "docs/es/skills/playwright-cli/references/running-code.md",
+   "docs/ja/VERIFICATION.md",
+   "docs/ja/skills/playwright-cli/references/running-code.md",
+   "docs/ko/VERIFICATION.md",
+   "docs/ko/skills/playwright-cli/references/running-code.md",
+   "docs/zh-Hans/VERIFICATION.md",
+   "docs/zh-Hans/skills/playwright-cli/references/running-code.md",
+   "docs/zh-Hant/VERIFICATION.md",
+   "docs/zh-Hant/skills/playwright-cli/references/running-code.md",
+   "enrich/enrich.go",
+   "landing/robots.txt",
+   "log/changelog-v0.7.0.md",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 3,
+  "other": {
+   "adapters/opencode-sdk/test/native.test.mjs": [],
+   "agent/provider.go": [
+    "req.Header.Set(\"User-Agent\", \"scopeweaver\")"
+   ],
+   "agent/session_header_test.go": [
+    "name, userAgent, want string",
+    "{name: \"custom\", explicit: true, userAgent: \"custom-client/1.0\", want: \"custom-client/1.0\"},",
+    "req.Header.Set(\"User-Agent\", tc.userAgent)",
+    "t.Fatalf(\"wire User-Agent=%q, want %q\", got, tc.want)"
+   ]
+  }
+ },
+ "포크 11@main": {
+  "repo": "포크 11",
+  "branch": "main",
+  "head": "2026-11-04T08:09:12Z 68e9f1f",
+  "truncated": false,
+  "nfiles": 603,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "go.mod": {
+    "status": "SAME-BLOB"
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "enrich/enrich.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 0,
+  "other": {}
+ },
+ "포크 12@main": {
+  "repo": "포크 12",
+  "branch": "main",
+  "head": "2026-11-02T12:20:42Z cf084b8",
+  "truncated": false,
+  "nfiles": 990,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.4.3",
+     "replace github.com/Autumn-27/norma => ./norma"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "enrich/enrich.go",
+   "norma/tool/webfetch.go",
+   "norma/tool/websearch.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "server/repeater.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 3,
+  "other": {
+   "norma/tool/webfetch.go": [
+    "req.Header.Set(\"user-agent\", \"norma/0.4\")",
+    "r2.Header.Set(\"user-agent\", \"norma/0.4\")"
+   ],
+   "norma/tool/websearch.go": [
+    "req.Header.Set(\"User-Agent\", \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\")"
+   ],
+   "server/repeater.go": []
+  }
+ },
+ "포크 13@master": {
+  "repo": "포크 13",
+  "branch": "master",
+  "head": "2026-11-17T15:30:21Z 63d6b67",
+  "truncated": false,
+  "nfiles": 1057,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-enrich/1.0\")"
+    ]
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "UA = \"Mozilla/5.0 (spa-api-recon)\"",
+     "req = urllib.request.Request(url, headers={\"User-Agent\": UA})"
+    ]
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\"",
+     "test: [\"CMD-SHELL\", \"curl -fsS http://127.0.0.1:8787/api/health >/dev/null && curl -fsS http://127.0.0.1:8787/ >/dev/null\"]"
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "norma v0.4.3",
+     "replace norma => ./third_party/norma"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "agents/外网侦察/external-pentest-recon/s0-preparation/preparation.md",
+   "agents/外网侦察/external-pentest-recon/s0-preparation/references/api_keys.md",
+   "agents/外网侦察/external-pentest-recon/s0-preparation/scripts/http_request.py",
+   "agents/外网侦察/external-pentest-recon/s0-preparation/scripts/recon_run.sh",
+   "agents/外网侦察/external-pentest-recon/s1-business-osint/references/people_osint.md",
+   "enrich/enrich.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 2,
+  "other": {
+   "agents/外网侦察/external-pentest-recon/s0-preparation/scripts/http_request.py": [
+    "DEFAULT_USER_AGENT = (",
+    "req.add_header(\"User-Agent\", DEFAULT_USER_AGENT)",
+    "headers.append(f\"User-Agent: {args.user_agent}\")"
+   ],
+   "agents/外网侦察/external-pentest-recon/s0-preparation/scripts/recon_run.sh": [
+    "-H 'User-Agent: external-pentest-recon')\"",
+    "--header \"hibp-api-key: $key\" --header \"user-agent: recon\" || {"
+   ]
+  }
+ },
+ "포크 14@main": {
+  "repo": "포크 14",
+  "branch": "main",
+  "head": "2026-10-06T05:06:09Z f45efab",
+  "truncated": false,
+  "nfiles": 600,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-enrich/1.0\")"
+    ]
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "UA = \"Mozilla/5.0 (spa-api-recon spider)\"",
+     "h = {\"User-Agent\": UA}"
+    ]
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "UA = \"Mozilla/5.0 (spa-api-recon)\"",
+     "req = urllib.request.Request(url, headers={\"User-Agent\": UA})"
+    ]
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "SAME-BLOB"
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "enrich/enrich.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 0,
+  "other": {}
+ },
+ "포크 15@main": {
+  "repo": "포크 15",
+  "branch": "main",
+  "head": "2026-11-19T10:08:22Z c3214ab",
+  "truncated": false,
+  "nfiles": 724,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-enrich/1.0\")"
+    ]
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "# 注意：host 模式下 ports 映射失效，服务直接监听宿主机 8787/8788。",
+     "network_mode: host",
+     "# host 网络模式下 ports 映射不生效（服务直接监听宿主机端口），保留仅作声明。",
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.4.3"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [],
+  "cand_count": 0,
+  "other": {}
+ },
+ "포크 16@main": {
+  "repo": "포크 16",
+  "branch": "main",
+  "head": "2026-11-02T02:15:46Z e5e6cef",
+  "truncated": false,
+  "nfiles": 774,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artifex-enrich/1.0\")"
+    ]
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artifex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artifex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "UA = \"Mozilla/5.0 (spa-api-recon spider)\"",
+     "h = {\"User-Agent\": UA}"
+    ]
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "UA = \"Mozilla/5.0 (spa-api-recon)\"",
+     "req = urllib.request.Request(url, headers={\"User-Agent\": UA})"
+    ]
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"127.0.0.1:5432:5432\"",
+     "network_mode: host",
+     "- \"${ARTIFEX_BIND_ADDR:-:8787}\"",
+     "- \"${ARTIFEX_PROXY_ADDR:-:8788}\"",
+     "ARTIFEX_PG_DSN: postgres://${POSTGRES_USER:-artifex}:${POSTGRES_PASSWORD}@127.0.0.1:5432/${POSTGRES_DB:-artifex}?sslmode=disable"
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.4.3"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "enrich/enrich.go",
+   "landing/robots.txt",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/ct-subs/scripts/ct_subs.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 1,
+  "other": {
+   "skills/ct-subs/scripts/ct_subs.py": [
+    "UA = {\"User-Agent\": \"Mozilla/5.0 (X11; Linux x86_64) Artifex-ct-subs\"}"
+   ]
+  }
+ },
+ "포크 17@main": {
+  "repo": "포크 17",
+  "branch": "main",
+  "head": "2026-11-18T02:46:34Z a81c55a",
+  "truncated": false,
+  "nfiles": 598,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "go.mod": {
+    "status": "SAME-BLOB"
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 0,
+  "other": {}
+ },
+ "포크 18@main": {
+  "repo": "포크 18",
+  "branch": "main",
+  "head": "2026-10-08T15:52:23Z 081f7dc",
+  "truncated": false,
+  "nfiles": 592,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/github.go": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "selfupdate/stage.go": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "SAME-BLOB"
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "enrich/enrich.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 0,
+  "other": {}
+ },
+ "포크 19@main": {
+  "repo": "포크 19",
+  "branch": "main",
+  "head": "2026-11-18T11:52:21Z 1ac66ff",
+  "truncated": false,
+  "nfiles": 908,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "# 宿主机端口被占用时改 .env 里的 ARTEX_PORT，别改右边（容器内固定 8787）",
+     "- \"${ARTEX_PORT:-8787}:8787\"",
+     "- \"127.0.0.1:8788:8788\"",
+     "ports:"
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "// Upstream github.com/Autumn-27/norma went closed-source and is no",
+     "// proxy into ./norma.",
+     "replace github.com/Autumn-27/norma => ./norma",
+     "github.com/Autumn-27/norma v0.4.3"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "CHANGELOG.md",
+   "enrich/enrich.go",
+   "norma/tool/webfetch.go",
+   "norma/tool/websearch.go",
+   "nuclei/nuclei_mcp.py",
+   "oob/oob_mcp.py",
+   "recon/recon_mcp.py",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "server/nuclei.go",
+   "server/proxysub.go",
+   "server/webshell.go",
+   "server/webshell_bulk_test.go",
+   "server/webshell_egress_test.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/app/(main)/function/oob/page.tsx",
+   "web/src/app/(main)/function/webshell/page.tsx",
+   "web/src/lib/mock/data.ts",
+   "webshell/webshell_mcp.py"
+  ],
+  "cand_count": 11,
+  "other": {
+   "norma/tool/webfetch.go": [
+    "req.Header.Set(\"user-agent\", \"norma/0.4\")",
+    "r2.Header.Set(\"user-agent\", \"norma/0.4\")"
+   ],
+   "norma/tool/websearch.go": [
+    "req.Header.Set(\"User-Agent\", \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\")"
+   ],
+   "nuclei/nuclei_mcp.py": [
+    "url, headers={\"User-Agent\": \"Mozilla/5.0 (compatible; ARTEX-Nuclei-Fingerprint/1.0)\"})"
+   ],
+   "oob/oob_mcp.py": [
+    "remote_ip, remote_port, ua, headers, body, truncated):",
+    "\"query,remote_ip,remote_port,ua,headers,body,body_len,truncated) \"",
+    "query, remote_ip, remote_port, ua, headers, body,",
+    "log(\"噪音(无token): %s %s from %s UA=%s\" % (",
+    "ua=self.headers.get(\"User-Agent\") or \"\",",
+    "lines.append(\"  UA        : %s\" % brief(r[\"ua\"], 120))",
+    "urllib.request.Request(url, headers={\"User-Agent\": \"oob-selftest/1.0\"}),",
+    "req = urllib.request.Request(url, headers={\"User-Agent\": \"oob-selftest/1.0\"})"
+   ],
+   "recon/recon_mcp.py": [
+    "req = urllib.request.Request(url, headers={\"User-Agent\": USER_AGENT})",
+    "USER_AGENT = \"Mozilla/5.0 (compatible; ARTEX-Subfinder-MCP/1.0)\"",
+    "\"User-Agent\": USER_AGENT,"
+   ],
+   "server/nuclei.go": [
+    "req.Header.Set(\"User-Agent\", \"Mozilla/5.0 (compatible; ARTEX-Nuclei-Fingerprint/1.0)\")"
+   ],
+   "server/proxysub.go": [
+    "req.Header.Set(\"User-Agent\", proxySubUA)"
+   ],
+   "server/webshell.go": [
+    "UserAgent string `json:\"user_agent,omitempty\"`",
+    "UserAgent   string   `json:\"user_agent,omitempty\"`",
+    "UserAgent:   sess.UserAgent,",
+    "ua := strings.TrimSpace(sess.UserAgent)",
+    "if ua == \"\" {",
+    "ua = webshellDefaultUA",
+    "req.Header.Set(\"User-Agent\", ua)",
+    "ua := strings.TrimSpace(req.UA)",
+    "if ua == \"\" {",
+    "ua = strings.TrimSpace(prev.UserAgent)",
+    "UserAgent:   ua,",
+    "ua := strings.TrimSpace(req.UA)",
+    "if note == \"\" && remotePath == \"\" && proxy == \"\" && ua == \"\" {",
+    "sess.UserAgent = ua"
+   ],
+   "server/webshell_bulk_test.go": [
+    "code, out := bulkPost(t, s, `{\"names\":[\"m1\"],\"note\":\"新备注\",\"proxy\":\"direct\",\"user_agent\":\"UA-X\"}`)",
+    "{\"UA 超长\", `{\"names\":[\"a\"],\"user_agent\":\"` + strings.Repeat(\"u\", 600) + `\"}`},"
+   ],
+   "server/webshell_egress_test.go": [
+    "if ua := r.Header.Get(\"User-Agent\"); strings.Contains(strings.ToLower(ua), \"artex\") {"
+   ],
+   "webshell/webshell_mcp.py": [
+    "USER_AGENT = (\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 \"",
+    "\"User-Agent\": (sess.get(\"user_agent\") or \"\").strip() or USER_AGENT,",
+    "user_agent = (opt_str(args, \"user_agent\", \"\") or \"\").strip()",
+    "\"user_agent\": user_agent or (prev.get(\"user_agent\") or \"\"),",
+    "\"  UA: %s\" % ((user_agent or (prev.get(\"user_agent\") or \"\")) or (USER_AGENT[:48] + \"…（默认浏览器 UA）\")),",
+    "\"user_agent\": {"
+   ]
+  }
+ },
+ "AntiFox 포크@main": {
+  "repo": "AntiFox 포크",
+  "branch": "main",
+  "head": "2026-11-17T12:38:06Z b8d7510",
+  "truncated": false,
+  "nfiles": 481,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"antifox-enrich/1.0\")"
+    ]
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "const userAgent = \"antifox-selfupdate\"",
+     "req.Header.Set(\"User-Agent\", userAgent)"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", userAgent)"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "# 流量代理（8788）默认只绑容器内回环、不对外发布——它无客户端认证，暴露到公网会被"
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": []
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "engine/tool/webfetch.go",
+   "engine/tool/websearch.go",
+   "enrich/enrich.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 2,
+  "other": {
+   "engine/tool/webfetch.go": [
+    "req.Header.Set(\"user-agent\", \"norma/0.4\")",
+    "r2.Header.Set(\"user-agent\", \"norma/0.4\")"
+   ],
+   "engine/tool/websearch.go": [
+    "req.Header.Set(\"User-Agent\", \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\")"
+   ]
+  }
+ },
+ "포크 20@main": {
+  "repo": "포크 20",
+  "branch": "main",
+  "head": "2026-11-11T15:41:29Z c26bca6",
+  "truncated": false,
+  "nfiles": 3924,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"wsartex-enrich/1.0\")"
+    ]
+   },
+   "selfupdate/github.go": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "selfupdate/stage.go": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "wsartex/norma v0.0.0",
+     "replace wsartex/norma => ./third_party/norma"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "enrich/enrich.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 0,
+  "other": {}
+ },
+ "포크 21@main": {
+  "repo": "포크 21",
+  "branch": "main",
+  "head": "2026-11-17T03:36:31Z cee8a90",
+  "truncated": false,
+  "nfiles": 1275,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "SAME-BLOB"
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [],
+  "cand_count": 0,
+  "other": {}
+ },
+ "포크 22@main": {
+  "repo": "포크 22",
+  "branch": "main",
+  "head": "2026-11-17T12:00:08Z 9a0785a",
+  "truncated": false,
+  "nfiles": 728,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-enrich/1.0\")"
+    ]
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.4.3"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "dev_docs/history/【已完成；真实模型评测暂缓】2026-11-12-WebAPI工具拓展计划.md",
+   "enrich/enrich.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 0,
+  "other": {}
+ },
+ "포크 22@artex-native-backup": {
+  "repo": "포크 22",
+  "branch": "artex-native-backup",
+  "head": "2026-11-13T18:06:57Z 828814c",
+  "truncated": false,
+  "nfiles": 626,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "SAME-BLOB"
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "dev_docs/history/【已完成；真实模型评测暂缓】2026-11-12-WebAPI工具拓展计划.md",
+   "enrich/enrich.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 0,
+  "other": {}
+ },
+ "포크 23@main": {
+  "repo": "포크 23",
+  "branch": "main",
+  "head": "2026-07-26T10:31:32Z 2c3ca4b",
+  "truncated": false,
+  "nfiles": 297,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/github.go": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "selfupdate/stage.go": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.2.7"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [],
+  "cand_count": 0,
+  "other": {}
+ },
+ "포크 24@main": {
+  "repo": "포크 24",
+  "branch": "main",
+  "head": "2026-11-09T14:23:42Z d0b1065",
+  "truncated": false,
+  "nfiles": 728,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- '127.0.0.1:${DITING_PORT:-8787}:8787'",
+     "- '127.0.0.1:${DITING_PROXY_PORT:-8788}:8788'"
+    ]
+   },
+   "go.mod": {
+    "status": "SAME-BLOB"
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "enrich/enrich.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md"
+  ],
+  "cand_count": 0,
+  "other": {}
+ },
+ "포크 25@master": {
+  "repo": "포크 25",
+  "branch": "master",
+  "head": "2026-11-21T02:15:04Z 050ccd8",
+  "truncated": false,
+  "nfiles": 666,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"prtseek-enrich/1.0\")"
+    ]
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"prtseek-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"prtseek-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"127.0.0.1:8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.4.3"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "agent/http_observation.go",
+   "enrich/enrich.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "server/toolpacks.go",
+   "server/toolpacks_download.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 3,
+  "other": {
+   "agent/http_observation.go": [
+    "req.Header.Set(\"User-Agent\", \"prtseek/1.2 HTTP observation\")"
+   ],
+   "server/toolpacks.go": [
+    "req.Header.Set(\"User-Agent\", \"prtseek-Personal-Toolpacks/1.0\")"
+   ],
+   "server/toolpacks_download.go": [
+    "req.Header.Set(\"User-Agent\", \"prtseek-Personal-Toolpacks/1.0\")"
+   ]
+  }
+ },
+ "포크 26@main": {
+  "repo": "포크 26",
+  "branch": "main",
+  "head": "2026-10-31T16:17:01Z e53efda",
+  "truncated": false,
+  "nfiles": 851,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-enrich/1.0\")"
+    ]
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.3.8"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "enrich/enrich.go",
+   "guard/extract.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "server/assembly.go",
+   "session/http_shell.go",
+   "session/http_shell_enc.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/chains-ad/refs/ad-password-spray.md",
+   "skills/chains-app/refs/app-miniapp.md",
+   "skills/chains-meta/refs/meta-stuck-detect.md",
+   "skills/chains-priv/refs/priv-disablefunc.md",
+   "skills/chains-recon/refs/recon-when-enough.md",
+   "skills/chains-web/refs/web-cmdi.md",
+   "skills/chains-web/refs/web-ssti.md",
+   "skills/chains-web/refs/web-xxe.md",
+   "skills/playwright-cli/references/running-code.md"
+  ],
+  "cand_count": 4,
+  "other": {
+   "guard/extract.go": [
+    "\"--data\": true, \"--header\": true, \"--proxy\": true, \"--user-agent\": true,"
+   ],
+   "server/assembly.go": [],
+   "session/http_shell.go": [
+    "req.Header.Set(\"User-Agent\", \"Mozilla/5.0 (ARTEX)\")"
+   ],
+   "session/http_shell_enc.go": [
+    "hreq.Header.Set(\"User-Agent\", \"Mozilla/5.0 (ARTEX)\")"
+   ]
+  }
+ },
+ "포크 27@master": {
+  "repo": "포크 27",
+  "branch": "master",
+  "head": "2026-11-04T15:05:53Z 1cfbf4c",
+  "truncated": false,
+  "nfiles": 817,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-enrich/1.0\")"
+    ]
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "UA = \"Mozilla/5.0 (spa-api-recon spider)\"",
+     "h = {\"User-Agent\": UA}"
+    ]
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "UA = \"Mozilla/5.0 (spa-api-recon)\"",
+     "req = urllib.request.Request(url, headers={\"User-Agent\": UA})"
+    ]
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "#   → http://127.0.0.1:8787   # first visit: create the admin password at /setup",
+     "# beyond the two loopback ports. Every decision, its rationale and the optional stricter",
+     "image: postgres:16-alpine@sha256:0cefaabd882e42bcb2a2f3dc56d3ce4770560ba62fd7f197f1a2e008fd5731ab",
+     "ports:",
+     "# Both ports are published on the host's loopback only. To reach the UI from another",
+     "- \"${ARTEX_BIND:-127.0.0.1}:8787:8787\"",
+     "- \"127.0.0.1:8788:8788\"",
+     "#   ARTEX_PROXY_ADDR=0.0.0.0:8788   (default 127.0.0.1:8788)",
+     "# -addr stays :8787: the UI/API port is authenticated and published per ARTEX_BIND.",
+     "command: [\"-addr\", \":8787\", \"-proxy\", \"${ARTEX_PROXY_ADDR:-127.0.0.1:8788}\"]",
+     "test: [\"CMD\", \"curl\", \"-fsS\", \"-o\", \"/dev/null\", \"http://127.0.0.1:8787/api/health\"]",
+     "#      mkdir -p data skills && chown -R 10001:10001 data skills"
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.4.4"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   ".github/workflows/detections.yml",
+   "CHANGELOG.md",
+   "CONTRIBUTING.md",
+   "MAINTAINING.md",
+   "README.md",
+   "detections/README.md",
+   "detections/attack/README.md",
+   "detections/attack/artex_navigator_layer.json",
+   "detections/indicators/README.md",
+   "detections/indicators/artex_indicators.csv",
+   "detections/indicators/artex_indicators.misp.json",
+   "detections/sigma/README.md",
+   "detections/sigma/artex_enrich_user_agent.yml",
+   "detections/sigma/artex_selfupdate_egress.yml",
+   "detections/sigma/correlation/artex_enrich_fanout.yml",
+   "detections/sigma/correlation/artex_enrich_scan_velocity.yml",
+   "detections/suricata/README.md",
+   "detections/suricata/artex.rules",
+   "detections/tests/README.md",
+   "detections/tests/indicators/check.py",
+   "detections/tests/indicators/run.sh",
+   "detections/tests/misp/check.py",
+   "detections/tests/sigma_match/events/artex_enrich_user_agent.json",
+   "detections/tests/sigma_match/events/artex_selfupdate_egress.json",
+   "detections/tests/sigma_match/events/correlation/artex_enrich_fanout.json",
+   "detections/tests/sigma_match/events/correlation/artex_enrich_scan_velocity.json",
+   "detections/tests/suricata/gen_pcap.py",
+   "detections/triage/artex_host_triage.py",
+   "docs/defense.md",
+   "enrich/enrich.go",
+   "scripts/check-external-links.py",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 11,
+  "other": {
+   ".github/workflows/detections.yml": [],
+   "detections/sigma/artex_enrich_user_agent.yml": [
+    "change this User-Agent, so its ABSENCE does not imply safety. Treat it as a supporting",
+    "cs-user-agent: 'artex-enrich/1.0'"
+   ],
+   "detections/sigma/artex_selfupdate_egress.yml": [
+    "c-useragent: 'artex-selfupdate'"
+   ],
+   "detections/sigma/correlation/artex_enrich_fanout.yml": [],
+   "detections/sigma/correlation/artex_enrich_scan_velocity.yml": [
+    "User-Agent, so a quiet result is inconclusive, not proof of safety; see the behaviour-based"
+   ],
+   "detections/tests/indicators/check.py": [],
+   "detections/tests/indicators/run.sh": [],
+   "detections/tests/misp/check.py": [
+    "\"http.user-agent\": (\"user-agent\", \"Network activity\"),"
+   ],
+   "detections/tests/suricata/gen_pcap.py": [
+    "source, each carrying a chosen User-Agent, so `suricata -r` can be run offline",
+    "def http_request(user_agent: str) -> bytes:",
+    "f\"User-Agent: {user_agent}\\r\\n\"",
+    "def flow(index: int, user_agent: str, t0: float):",
+    "user_agent = sys.argv[2]",
+    "packets.extend(flow(i, user_agent, BASE_EPOCH + i * interval))",
+    "print(f\"wrote {len(packets)} packets across {num_flows} flows to {out} (UA={user_agent!r})\")"
+   ],
+   "detections/triage/artex_host_triage.py": [],
+   "scripts/check-external-links.py": [
+    "therefore checks **with a browser User-Agent, using GET, following redirects**. It sorts the",
+    "\"User-Agent\": BROWSER_UA,"
+   ]
+  }
+ },
+ "포크 28@main": {
+  "repo": "포크 28",
+  "branch": "main",
+  "head": "2026-10-12T08:51:03Z fdef917",
+  "truncated": false,
+  "nfiles": 821,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "// Upstream github.com/Autumn-27/norma went closed-source and is no",
+     "// proxy into ./norma.",
+     "replace github.com/Autumn-27/norma => ./norma",
+     "github.com/Autumn-27/norma v0.4.3"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "enrich/enrich.go",
+   "norma/tool/webfetch.go",
+   "norma/tool/websearch.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 2,
+  "other": {
+   "norma/tool/webfetch.go": [
+    "req.Header.Set(\"user-agent\", \"norma/0.4\")",
+    "r2.Header.Set(\"user-agent\", \"norma/0.4\")"
+   ],
+   "norma/tool/websearch.go": [
+    "req.Header.Set(\"User-Agent\", \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\")"
+   ]
+  }
+ },
+ "포크 29@main": {
+  "repo": "포크 29",
+  "branch": "main",
+  "head": "2026-10-26T16:52:42Z ffef5e2",
+  "truncated": false,
+  "nfiles": 859,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "SAME-BLOB"
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"artex-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "SAME-BLOB"
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "SAME-BLOB"
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\""
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.4.3"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "agent/tools_ssrf.go",
+   "agent/tools_waf.go",
+   "agent/tools_web.go",
+   "agent/tools_weblogin.go",
+   "enrich/enrich.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "skills/ad-attack-matrix/references/ad-attack-enhanced-2025-2026-v1.md",
+   "skills/ad-attack-matrix/references/azure-ad-attack-skill.md",
+   "skills/ai-agent-security/references/ai-agent-mcp-security-2025-2026-v1.md",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/cloud-k8s-matrix/references/cloud-iam-deep-skill.md",
+   "skills/code-audit-matrix/references/code-audit-master.md",
+   "skills/deser-exploit-matrix/references/dotnet-viewstate-exploitation.md",
+   "skills/mobile-binary-matrix/references/mobile-pentest-deep-2025-2026-matrix-v1.md",
+   "skills/oa-cms-fingerprint/references/fingerprint-active-probe.md",
+   "skills/oa-cms-fingerprint/references/precision-cve-matching.md",
+   "skills/pentest-methodology/references/api-security-testing-2025-2026.md",
+   "skills/pentest-methodology/references/auth-attack-enhanced-2025-2026-v1.md",
+   "skills/pentest-methodology/references/business-logic-abuse-owasp-bla-2025-v1.md",
+   "skills/pentest-methodology/references/pentest-blindspots-and-improvements.md",
+   "skills/pentest-methodology/references/pentest-deep-exploitation.md",
+   "skills/playwright-cli/references/running-code.md",
+   "skills/post-exploitation-clean/references/credential-breach-correlation-v1.md",
+   "skills/post-exploitation-clean/references/cross-domain-session-reuse-skill.md",
+   "skills/web-attack-matrix/references/http-request-smuggling-skill.md",
+   "skills/web-attack-matrix/references/mobile-api-differential-skill.md",
+   "skills/web-attack-matrix/references/web-attack-new-techniques-2025-2026-v1.md",
+   "skills/web-attack-matrix/references/web-frontend-attack-2025-2026-matrix-v1.md",
+   "skills/web-attack-matrix/references/xss-deep-matrix-v1.md",
+   "skills/web-attack-matrix/scripts/login_fuzz.py",
+   "web/src/lib/mock/data.ts"
+  ],
+  "cand_count": 5,
+  "other": {
+   "agent/tools_ssrf.go": [
+    "req.Header.Set(\"User-Agent\", \"YCode-recon/0.3\")"
+   ],
+   "agent/tools_waf.go": [
+    "add(\"ua-googlebot\", payload, map[string]string{\"User-Agent\": \"Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)\"}, \"query\")",
+    "add(\"ua-baiduspider\", payload, map[string]string{\"User-Agent\": \"Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)\"}, \"query\")",
+    "req.Header.Set(\"User-Agent\", \"YCode-recon/0.3\")"
+   ],
+   "agent/tools_web.go": [
+    "req.Header.Set(\"User-Agent\", \"YCode-recon/0.3\")"
+   ],
+   "agent/tools_weblogin.go": [
+    "req.Header.Set(\"User-Agent\", \"YCode-recon/0.3\")",
+    "req.Header.Set(\"User-Agent\", \"YCode-recon/0.3\")"
+   ],
+   "skills/web-attack-matrix/scripts/login_fuzz.py": []
+  }
+ },
+ "포크 30@main": {
+  "repo": "포크 30",
+  "branch": "main",
+  "head": "2026-11-21T02:49:58Z 2d16221",
+  "truncated": false,
+  "nfiles": 1004,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\")"
+    ]
+   },
+   "selfupdate/github.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"pojun-selfupdate\")"
+    ]
+   },
+   "selfupdate/stage.go": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "req.Header.Set(\"User-Agent\", \"pojun-selfupdate\")"
+    ]
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "UA = os.environ.get(\"RECON_UA\") or \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"",
+     "h = {\"User-Agent\": UA}"
+    ]
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "UA = os.environ.get(\"RECON_UA\") or \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"",
+     "req = urllib.request.Request(url, headers={\"User-Agent\": UA})"
+    ]
+   },
+   "docker-compose.yml": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "ports:",
+     "- \"8787:8787\"",
+     "- \"127.0.0.1:8788:8788\"",
+     "# - \"4444-4450:4444-4450\""
+    ]
+   },
+   "go.mod": {
+    "status": "BLOB-CHANGED",
+    "lines": [
+     "github.com/Autumn-27/norma v0.4.3",
+     "// norma 为本项目核心 agent 基建，原上游 github.com/Autumn-27/norma 曾发生仓库删除。",
+     "replace github.com/Autumn-27/norma => github.com/포크 30의 Norma v0.4.4"
+    ]
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "CHANGELOG.md",
+   "agent/js_audit_ua_test.go",
+   "agent/poc_scaffold.go",
+   "agent/prompt_tails_test.go",
+   "agent/provider.go",
+   "agent/tools_http.go",
+   "agent/tools_jsaudit.go",
+   "agent/user_agent_test.go",
+   "db/config.go",
+   "db/schema.sql",
+   "docs/03-LLM接入层.md",
+   "docs/OPSEC痕迹治理调研-2026-11-19.md",
+   "enrich/enrich.go",
+   "hostd/server.go",
+   "mcp-servers/fofa/fofa.py",
+   "mihomo/install_sources.go",
+   "mihomo/mihomo.go",
+   "selfupdate/github.go",
+   "selfupdate/stage.go",
+   "server/dto.go",
+   "server/llm_presets_api.go",
+   "server/proxypool_subscription.go",
+   "server/server.go",
+   "server/server_mgmt.go",
+   "server/side_questions.go",
+   "skills/api-recon/scripts/harvest_static.py",
+   "skills/api-recon/scripts/spider_mpa.py",
+   "skills/playwright-cli/references/running-code.md",
+   "skills/src-hunting/references/cache-poisoning-test.md",
+   "skills/src-hunting/references/jndi-injection-test.md",
+   "skills/src-hunting/references/oauth-jwt-test.md",
+   "skills/src-hunting/references/path-traversal-lfi-test.md",
+   "skills/src-hunting/rules/vuln-report-format.md",
+   "vulnintel/ghsa.go",
+   "web/src/app/(main)/system/llm/_components/profile-sheet.tsx",
+   "web/src/lib/api.ts",
+   "web/src/lib/mock/data.ts",
+   "web/src/lib/types.ts"
+  ],
+  "cand_count": 19,
+  "other": {
+   "agent/js_audit_ua_test.go": [
+    "jsAuditUAHeadRE = regexp.MustCompile(`(?s)UA = \\{(.*?)\\}`)",
+    "platformUARE     = regexp.MustCompile(`Header\\.Set\\(\"User-Agent\",\\s*\"([^\"]+)\"\\)`)",
+    "t.Fatal(\"内嵌脚本里找不到 UA = {...} 头字典\")",
+    "\"User-Agent\":      platformDefaultUA(t),",
+    "\"User-Agent\":      platformDefaultUA(t),"
+   ],
+   "agent/poc_scaffold.go": [
+    "UA = {\"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"}"
+   ],
+   "agent/prompt_tails_test.go": [],
+   "agent/provider.go": [
+    "// UserAgent,非空时用它替换每个 LLM 请求的 User-Agent 头。默认空 = 保持",
+    "// Go UA,填一个浏览器 UA 即可放行;由 quotaAwareTransport 统一注入,覆盖",
+    "// userAgent, when non-empty, replaces the request's User-Agent header. Empty",
+    "req.Header.Set(\"User-Agent\", t.userAgent)",
+    "return &http.Client{Transport: quotaAwareTransport{base: transport, sessionHeaderKey: strings.TrimSpace(sessionHeaderKey), userAgent: sanitizeUserAgent(userAgent)}}, nil"
+   ],
+   "agent/tools_http.go": [
+    "req.Header.Set(\"User-Agent\", a.UserAgent)",
+    "req.Header.Set(\"User-Agent\", \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\")",
+    "\"user_agent\":       str(\"自定义 User-Agent（可选；默认 Chrome/131 Windows。指纹对抗/伪装移动端/复现特定客户端时用）\"),"
+   ],
+   "agent/tools_jsaudit.go": [
+    "UA = {\"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\","
+   ],
+   "agent/user_agent_test.go": [
+    "const ua = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"",
+    "rt := quotaAwareTransport{base: base, userAgent: ua}",
+    "t.Fatalf(\"User-Agent = %q, want configured UA\", got)",
+    "t.Fatalf(\"User-Agent = %q, want untouched when unconfigured\", got)",
+    "const ua = \"Pojun-UA-Test/1.0\"",
+    "UserAgent: ua,",
+    "t.Fatalf(\"request %d User-Agent = %q, want %q\", i, got, ua)"
+   ],
+   "db/config.go": [
+    "// UserAgent, when non-empty, replaces the User-Agent header on every LLM"
+   ],
+   "hostd/server.go": [
+    "req.Header.Set(\"User-Agent\", \"pojun-hostd\")",
+    "req.Header.Set(\"User-Agent\", \"pojun-hostd\")",
+    "req.Header.Set(\"User-Agent\", \"pojun-hostd\")"
+   ],
+   "mcp-servers/fofa/fofa.py": [
+    "USER_AGENT = \"fofa-mcp/1.0\"",
+    "\"User-Agent\": USER_AGENT,",
+    "headers={\"User-Agent\": ONEFOX_UA},"
+   ],
+   "mihomo/install_sources.go": [
+    "req.Header.Set(\"User-Agent\", \"pojun-mihomo-installer\")",
+    "req.Header.Set(\"User-Agent\", \"pojun-mihomo-installer\")"
+   ],
+   "mihomo/mihomo.go": [
+    "req.Header.Set(\"User-Agent\", \"pojun-mihomo-installer\")"
+   ],
+   "server/dto.go": [
+    "UserAgent:        p.UserAgent,"
+   ],
+   "server/llm_presets_api.go": [
+    "req, apiKey, userAgent, ok := s.decodeModelsReq(w, r)"
+   ],
+   "server/proxypool_subscription.go": [
+    "for _, ua := range subscriptionUserAgents {",
+    "hr.Header.Set(\"User-Agent\", ua)",
+    "lastErr = fmt.Errorf(\"拉取订阅失败（UA=%s）: %w\", uaLabel(ua), err)",
+    "lastErr = fmt.Errorf(\"订阅返回 %d（UA=%s；检查订阅是否过期、是否要求特定 UA，或被机场风控）\",",
+    "lastErr = fmt.Errorf(\"读取订阅失败（UA=%s）: %w\", uaLabel(ua), err)",
+    "if i := strings.IndexByte(ua, '/'); i > 0 {",
+    "if i := strings.IndexByte(ua, ' '); i > 0 {"
+   ],
+   "server/server.go": [
+    "cfg.UserAgent = p.UserAgent",
+    "userAgent = p.UserAgent",
+    "UserAgent: userAgent,",
+    "cfg.UserAgent = p.UserAgent",
+    "cfg.UserAgent = req.UserAgent",
+    "if req.ProfileID != nil && (cfg.APIKey == \"\" || cfg.SessionHeaderKey == \"\" || cfg.UserAgent == \"\") {",
+    "if cfg.UserAgent == \"\" {",
+    "cfg.UserAgent = p.UserAgent"
+   ],
+   "server/server_mgmt.go": [
+    "p.UserAgent = strings.TrimSpace(p.UserAgent)",
+    "if strings.ContainsAny(p.UserAgent, \"\\r\\n\") {",
+    "req, apiKey, userAgent, ok := s.decodeModelsReq(w, r)",
+    "userAgent = strings.TrimSpace(req.UserAgent)",
+    "if userAgent == \"\" {",
+    "userAgent = p.UserAgent",
+    "return req, apiKey, userAgent, true",
+    "httpReq.Header.Set(\"User-Agent\", userAgent)"
+   ],
+   "server/side_questions.go": [],
+   "vulnintel/ghsa.go": [
+    "req.Header.Set(\"User-Agent\", \"pojun-vulnintel\")"
+   ]
+  }
+ },
+ "포크 31@main": {
+  "repo": "포크 31",
+  "branch": "main",
+  "head": "2026-11-10T16:38:10Z c5c9c8e",
+  "truncated": false,
+  "nfiles": 118,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "selfupdate/github.go": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "selfupdate/stage.go": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "docker-compose.yml": {
+    "status": "FILE-MISSING",
+    "alt": [
+     "docker/docker-compose.yml"
+    ]
+   },
+   "go.mod": {
+    "status": "FILE-MISSING",
+    "alt": []
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [
+   "examples/demo_target.py",
+   "src/aria_x/tools/net.py"
+  ],
+  "cand_count": 2,
+  "other": {
+   "examples/demo_target.py": [
+    "self._send(HTTPStatus.OK, b\"User-agent: *\\nDisallow: /files\\nDisallow: /debug\\n\")"
+   ],
+   "src/aria_x/tools/net.py": [
+    "USER_AGENT = \"ARIA-X/0.1 (authorized security research)\"",
+    "request_headers = {\"User-Agent\": USER_AGENT, \"Accept\": \"*/*\", \"Accept-Encoding\": \"identity\"}",
+    "request = urllib.request.Request(url, headers={\"User-Agent\": USER_AGENT, \"Accept\": \"text/html\"})"
+   ]
+  }
+ },
+ "darkfibr/artex-forensics@main": {
+  "repo": "darkfibr/artex-forensics",
+  "branch": "main",
+  "head": "2026-11-14T21:27:54Z ec0389c",
+  "truncated": false,
+  "nfiles": 7,
+  "fp": {
+   "enrich/enrich.go": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "selfupdate/github.go": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "selfupdate/stage.go": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "skills/api-recon/scripts/spider_mpa.py": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "skills/api-recon/scripts/harvest_static.py": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "docker-compose.yml": {
+    "status": "FILE-MISSING",
+    "alt": []
+   },
+   "go.mod": {
+    "status": "FILE-MISSING",
+    "alt": []
+   }
+  },
+  "code_search": "ok",
+  "cs_hits": [],
+  "cand_count": 0,
+  "other": {}
+ }
+}

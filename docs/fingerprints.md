@@ -32,6 +32,20 @@
 - 우리가 받은 원본 소스에는 `captcha` 처리가 없다(관찰, 그 주장과 맞음).
 - **탐지 후보**: 내 망 안에서 누군가 ARTEX 콘솔을 돌리고 있다면, 그 콘솔로 들어오는 `POST /api/auth/login` 본문의 `captcha` 값이 `!`로 시작하는 요청 = 백도어 악용 시도. 인터넷 노출 콘솔을 찾아 접속하는 일은 하지 않는다.
 
+## FBI FLASH-20261113-001에서 가져올 행동 지표
+
+원문(IC3, TLP:CLEAR, 13쪽)에는 UA 문자열이 없다. 위 UA 룰은 그 빈자리를 채운다. 원문에 있는 네트워크·행동 지표:
+
+| 지표 | 원문 근거 | 룰 후보 |
+|---|---|---|
+| 피해 서버에서 `api.db-ip.com` 조회(위치 확인) | Initial Recon | DNS·TLS SNI HUNT |
+| 명령 출력을 `webhook.site`(엔드포인트 교체)로 전송 | Collection | DNS·TLS SNI HUNT |
+| LLM API 도메인 egress(anthropic·deepseek·bigmodel·x.ai) | Network Indicators | 서버 대역 POLICY(단독 경보는 소음) |
+| LLM 재판매 게이트웨이(CLIProxyAPI, New API) | Information Requested | 미정 |
+| 로그인·검색 엔드포인트에 대한 고빈도 순차 열거, 작은 변형을 반복하는 실패 요청 | HTTP request patterns, Attack Characteristics | 실측 뒤 리듬 룰 |
+| 하위 에이전트가 같은 요청을 중복으로 보냄 | Attack Characteristics | 실측 뒤 |
+| 웹 디렉터리 퍼징 500회 이상 | Initial Recon | 일반 스캐너 룰 영역 |
+
 ## 다음
 
 1. 격리 실험실에서 실제 트래픽 캡처(별도 실험실 저장소) → 위 표의 실측 확인, 요청 리듬·재시도 지문 추가
