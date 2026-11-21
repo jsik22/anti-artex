@@ -27,7 +27,7 @@ ARTEX를 원본 소스에서 빌드해 인터넷과 분리된 실험실에서 �
 
 <table>
 <tr><th nowrap>항목</th><th>예&#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; </th></tr>
-<tr><td nowrap>요청 모양</td><td>도구별 헤더 구성(WebFetch=Go 기본, 스킬 스크립트=Python urllib 기본). UA를 바꾼 포크도 같은 클라이언트를 쓴다</td></tr>
+<tr><td nowrap>요청 모양</td><td>도구별 헤더 구성(WebFetch=Go 기본, 스킬 스크립트=Python urllib 기본). UA를 바꾼 포크도 클라이언트는 같다</td></tr>
 <tr><td nowrap>편성 구조</td><td>동시 작업 줄기 수, 한 출발지에서 섞여 나오는 클라이언트 종류, 하위 작업의 중복 요청</td></tr>
 <tr><td nowrap>시간 구조</td><td>요청 몰아치기 안의 간격과 몰아치기 모양, 모델 오류 재시도 간격</td></tr>
 <tr><td nowrap>내장 행위</td><td>지시문·코드가 강제하는 행위와 그렇지 않은 행위(소스 분석과 함께 본다)</td></tr>
@@ -70,7 +70,7 @@ ARTEX를 원본 소스에서 빌드해 인터넷과 분리된 실험실에서 �
 <tr><td nowrap>9278302</td><td>UA <code>norma/</code></td><td>Norma SDK <code>tool/webfetch.go</code></td></tr>
 <tr><td nowrap>9278303</td><td>UA <code>Mozilla/5.0 (spa-api-recon</code></td><td><code>skills/api-recon/scripts/*.py</code></td></tr>
 <tr><td nowrap>9278304</td><td>POLICY: UA <code>artex-selfupdate</code></td><td><code>selfupdate/*.go</code></td></tr>
-<tr><td nowrap>9278305</td><td>백도어 콘솔 로그인 명령(<code>captcha</code>가 <code>!</code>로 시작)</td><td>제3자 포렌식(tomicdd/artex 이미지)</td></tr>
+<tr><td nowrap>9278305</td><td>백도어 콘솔 로그인 명령(<code>captcha</code> 값이 <code>!</code>로 시작)</td><td>제3자 포렌식(tomicdd/artex 이미지)</td></tr>
 <tr><td nowrap>9278306</td><td>포크 enrich UA(artifex·antifox·wsartex·prtseek)</td><td>포크 비교</td></tr>
 <tr><td nowrap>9278307</td><td>포크 도구 UA의 ARTEX 토큰(<code>(ARTEX)</code>, <code>ARTEX-…/</code>)</td><td>포크 비교</td></tr>
 <tr><td nowrap>9278308</td><td>POLICY: 포크 자가 업데이트 UA</td><td>포크 비교</td></tr>
@@ -83,7 +83,7 @@ ARTEX를 원본 소스에서 빌드해 인터넷과 분리된 실험실에서 �
 ### 룰별 설명
 
 - **ARTEX 도구 UA(9278301~03)**: ARTEX가 직접 보내는 요청의 고정 UA다. 9278302(WebFetch `norma/`)는 비교한 포크가 모두 그대로 쓴 가장 질긴 지문이고, 9278303은 api-recon 스킬 스크립트다. 9278301(`artex-enrich/`)은 v0.3.15에 이 UA를 내는 코드가 있지만 호출하는 곳이 없어 이 판에서는 울리지 않을 가능성이 크다.
-- **POLICY(9278304·08)**: 내부망에서 ARTEX 콘솔이 자가 업데이트하는 흔적이다. 승인되지 않은 ARTEX가 내부에 있는지 본다.
+- **POLICY(9278304·08)**: 내부망 ARTEX 콘솔의 자가 업데이트 흔적이다. 승인되지 않은 ARTEX가 내부에 있는지 본다.
 - **백도어 이미지(9278305)**: 백도어가 든 Docker 이미지로 띄운 콘솔에 들어오는 로그인 명령이다. 내부 ARTEX 콘솔이 남에게 장악당하는 시도를 본다.
 - **포크 UA(9278306~11)**: 포크가 자기 이름으로 바꾼 UA다(포크 34개 비교).
 - **로그인 연속(9278390, HUNT)**: 워커가 curl로 보내는 로그인 변형 반복이다. ARTEX 전용이 아닌 자동화 공격 일반 신호라 단독으로 ARTEX라고 판단하지 않는다.
@@ -117,14 +117,14 @@ bash tests/run.sh RESULTS.md
 
 ### 공개 묶음과 비교
 
-실험실 캡처(ARTEX 실행 3회, 요청 154건)와 정상 트래픽(2개, 요청 160건)에 함께 돌린 경보 수다(2026-11-22, 공개 룰 원문은 이 저장소에 넣지 않는다).
+실험실 캡처(ARTEX 실행 3회, 요청 154건)와 정상 트래픽(2개, 요청 160건)에 함께 돌린 경보 수다(2026-11-22). MMD는 MalwareMustDie MMD-072-2026, Theori는 Theori aipt-detections이고, 공개 룰 원문은 이 저장소에 넣지 않는다.
 
 <table>
 <tr><th nowrap>묶음</th><th>ARTEX 실행</th><th>정상 트래픽&#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; </th></tr>
 <tr><td nowrap>이 저장소 v0.3.0</td><td>48(두 엔진 같음)</td><td>0</td></tr>
-<tr><td nowrap>Theori aipt-detections(Suricata)</td><td>42</td><td>0</td></tr>
-<tr><td nowrap>MalwareMustDie MMD-072-2026(Suricata)</td><td>ARTEX 전용 12, 일반 도구 경고 6</td><td>일반 도구 경고 5</td></tr>
-<tr><td nowrap>MalwareMustDie MMD-072-2026(Snort 3)</td><td>154(대부분 일반 도구 경고)</td><td>일반 도구 경고 62</td></tr>
+<tr><td nowrap>Theori(Suricata)</td><td>42</td><td>0</td></tr>
+<tr><td nowrap>MMD(Suricata)</td><td>ARTEX 전용 12, 일반 도구 경고 6</td><td>일반 도구 경고 5</td></tr>
+<tr><td nowrap>MMD(Snort 3)</td><td>154(대부분 일반 도구 경고)</td><td>일반 도구 경고 62</td></tr>
 </table>
 
 - 세 묶음 모두 ARTEX 도구(WebFetch, api-recon)가 만든 요청은 잡는다. 워커가 curl로 보낸 공격 요청은 ARTEX 전용 룰 어디에도 걸리지 않고, 이 저장소의 로그인 연속 룰(9278390)과 MMD의 일반 curl 경고만 반응했다.
