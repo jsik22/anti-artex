@@ -1,0 +1,7 @@
+# anti-artex draft behavior rules (Suricata 7). 실측 근거: docs/lab-mock-2026-11-21.md. HUNT 용도, 본 룰 판에 넣기 전 초안.
+alert http any any -> any any (msg:"LOCAL ARTEX HUNT login POST burst (credential variation)"; flow:to_server,established; http.method; content:"POST"; http.uri; pcre:"/(?:log_?in|sign_?in|auth)/i"; detection_filter:track by_src, count 6, seconds 30; classtype:attempted-user; sid:9278390; rev:1;)
+alert http any any -> any any (msg:"LOCAL ARTEX HUNT search parameter burst (input variation)"; flow:to_server,established; http.method; content:"GET"; http.uri; pcre:"/[?&](?:q|query|search|keyword|s)=/i"; detection_filter:track by_src, count 5, seconds 10; classtype:web-application-attack; sid:9278391; rev:1;)
+# 실패(2026-11-21): SPA는 없는 경로에도 200을 돌려줘 열거에서 404가 나오지 않음
+# alert http any any -> any any (msg:"LOCAL ARTEX HUNT 404 burst to one client (path enumeration)"; flow:to_client,established; http.stat_code; content:"404"; detection_filter:track by_dst, count 20, seconds 30; classtype:attempted-recon; sid:9278392; rev:1;)
+# 실패(2026-11-21): 브라우저는 평문 HTTP에 Sec-Fetch-* 헤더를 보내지 않아 정상 트래픽에서 대량 오탐
+# alert http any any -> any any (msg:"LOCAL ARTEX HUNT non-browser GET burst (path enumeration)"; flow:to_server,established; http.method; content:"GET"; http.header; content:!"Sec-Fetch-"; nocase; detection_filter:track by_src, count 25, seconds 10; classtype:attempted-recon; sid:9278393; rev:1;)

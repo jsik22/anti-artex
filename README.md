@@ -1,38 +1,78 @@
 # anti-artex
 
-자율 AI 침투 도구 ARTEX(및 한국어 재배포판·포크)의 **네트워크 지문을 공개 탐지 룰로 만드는** 방어 프로젝트.
-기본 설정 그대로 돌린 ARTEX 트래픽이 Snort 3·Suricata·WAF에서 바로 걸리게 하는 것이 목표다.
+자율 AI 침투 도구 ARTEX와 그 포크·재배포판에 대한 탐지 자료를 모은다.
 
-> 상태: 비공개 작업 중. 윤곽이 잡히면 공개로 전환한다.
+여러 보고서와 저장소에 흩어진 ARTEX IOC와 탐지 룰의 유효성, 정확성, 실효성을 직접 확인하고 실측해서, 국내 운영자가 ARTEX에 대응할 때 믿고 참고할 수 있는 자료를 한곳에 쌓아 가는 것을 지향한다.
 
-## 범위
+> 상태: 비공개 작업 중.
 
-- 하는 것: 트래픽 지문(User-Agent, 요청 리듬, 재시도 습관, 프록시 흔적) 정리, Snort 3·Suricata 룰, 격리 실험실 실측, 오용 사례·포크 추적.
-- 하지 않는 것: 인터넷에 노출된 ARTEX 관리 화면 접속, 운영자 신원 추적, 역공격, 키·계정 무력화.
+## 다루는 것
+
+- **IOC 정리**: 공개 보고의 IOC를 원문과 대조하고, 지표마다 현재 상태와 권고 조치(차단·사냥·기록용·차단 금지)를 붙인다.
+- **탐지 룰**: 타 저장소, 상용 플랫폼 등을 통해 공개된 ARTEX 탐지 룰은 격리 실험실의 실측 트래픽과 정상 트래픽에 돌려 탐지 여부와 오탐을 확인하고, 이들이 다루지 않는 지문만 Snort 3·Suricata 룰로 새로 만든다. 새 룰도 같은 시험을 거친다.
+- **인프라·포크 추적**: 공개 정보와 제3자 색인만으로 ARTEX 인프라, LLM 중개 서비스, 포크·Docker 이미지 변화를 살핀다.
+
+## 실험실
+
+ARTEX를 원본 소스에서 빌드해 인터넷과 분리된 실험실에서 돌린다. 표적은 같은 격리망의 연습용 취약 앱(OWASP Juice Shop) 하나다.
+
+**실제 모델 대신 가짜 모델로 구동한다.** ARTEX는 모델 주소를 설정으로 받는다. 이 주소를 실험실 안의 OpenAI 호환 서버로 돌리고, 그 서버가 ARTEX의 각 역할(목표 분해·계획자·워커)에 정해 둔 도구 호출을 돌려준다.
+
+- ARTEX 엔진(의도 생성, 워커 병렬 실행, 재시도, 작업 종료)과 도구(WebFetch, 스킬 스크립트, 워커 셸)는 실제로 동작한다. 표적에 가는 요청은 ARTEX가 만든 진짜 트래픽이다.
+- 무엇을 언제 할지는 대본이 정해, 같은 트래픽을 몇 번이든 재현할 수 있다. 모델 거절, 비용, 외부 전송이 없다.
+- 모델의 응답 지연은 분포로 바꿔 넣어(0초~25초) 지연에 따라 달라지는 것과 달라지지 않는 것을 나눈다.
+- 비교를 위해 정상 트래픽(브라우저 사용자, 모니터링 curl, API 클라이언트 등)도 같은 실험실에서 캡처한다.
+
+**뽑아내는 것**은 모델이 무엇을 시키든 ARTEX 코드가 만드는 부분이다.
+
+<table>
+<tr><th nowrap>항목</th><th>예&#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; </th></tr>
+<tr><td nowrap>요청 모양</td><td>도구별 헤더 구성(WebFetch=Go 기본, 스킬 스크립트=Python urllib 기본). UA를 바꾼 포크도 같은 클라이언트를 쓴다</td></tr>
+<tr><td nowrap>편성 구조</td><td>동시 작업 줄기 수, 한 출발지에서 섞여 나오는 클라이언트 종류, 하위 작업의 중복 요청</td></tr>
+<tr><td nowrap>시간 구조</td><td>요청 몰아치기 안의 간격과 몰아치기 모양, 모델 오류 재시도 간격</td></tr>
+<tr><td nowrap>내장 행위</td><td>지시문·코드가 강제하는 행위와 그렇지 않은 행위(소스 분석과 함께 본다)</td></tr>
+</table>
+
+**한계**: 모델이 실제로 어떤 공격 전술을 고르는지는 이 방식으로 재현하지 않는다. 결과는 "ARTEX 도구 경로가 만드는 트래픽과 그에 대한 룰의 반응"까지만 말한다. 전술은 ARTEX 지시문 분석과 공개 침입 보고로 보완한다.
+
+## 룰 실측
+
+1. 실험실 캡처(ARTEX 실행, 정상 트래픽)와 실측 헤더 모양을 옮긴 합성 케이스를 준비한다.
+2. 공개 룰 묶음과 이 저장소의 룰을 Suricata 7·Snort 3에 함께 돌린다(컨테이너 `--network none`). 공개 룰 원문은 저장소에 넣지 않고 경로로만 읽는다.
+3. 룰마다 무엇을 잡았는지, 무엇을 놓쳤는지, 정상 트래픽에 오탐이 났는지, 엔진에 따라 결과가 다른지, 로드 자체가 되는지 본다.
+4. 공개 룰이 놓친 부분만 새 룰로 만들고, 같은 캡처와 합성 케이스로 다시 시험한다. 단일 룰로 어려운 것은 출발지별 가중 점수(로그 분석용)로 묶는다.
+
+## 하지 않는 것
+
+- 노출된 ARTEX 콘솔이나 IOC 호스트에 직접 접속
+- 운영자 신원 추적, 역공격, 키·계정 무력화
+- 유출물·악성 이미지 내려받기
 
 ## 구성
 
-| 경로 | 내용 |
-|---|---|
-| `rules/snort3`, `rules/suricata` | 탐지 룰 |
-| `tests/` | 회귀 시험(정상·공격형 트래픽 모양) |
-| `docs/` | 지문 근거, 출처 |
+<table>
+<tr><th nowrap>경로</th><th>내용&#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; </th></tr>
+<tr><td nowrap><code>rules/snort3</code>, <code>rules/suricata</code></td><td>탐지 룰</td></tr>
+<tr><td nowrap><code>rules/draft/</code></td><td>실측으로 시험 중인 룰 초안(행동, 요청 모양)</td></tr>
+<tr><td nowrap><code>tests/</code></td><td>회귀 시험 <code>run.sh</code>, 캡처 비교 <code>replay_compare.sh</code>, 분석 <code>rhythm.py</code>·<code>streams.py</code>·<code>score_sources.py</code>, 합성 케이스 <code>shape_fixtures.py</code></td></tr>
+<tr><td nowrap><code>docs/fingerprints.md</code></td><td>트래픽 지문과 근거</td></tr>
+<tr><td nowrap><code>docs/lab-mock-*.md</code></td><td>실험실 실측 기록</td></tr>
+<tr><td nowrap><code>docs/forks-2026-11-21.json</code></td><td>포크 비교</td></tr>
+</table>
 
-## 현재 룰 (v0.2.0, 실측 전)
+## 룰 (v0.2.0)
 
-| sid | 찾는 것 | 근거 |
-|---|---|---|
-| 9278301 | UA `artex-enrich/` | `enrich/enrich.go` |
-| 9278302 | UA `norma/` | Norma SDK `tool/webfetch.go` |
-| 9278303 | UA `Mozilla/5.0 (spa-api-recon` (크롤러·정적 수집 2종) | `skills/api-recon/scripts/*.py` — 다른 공개 묶음에 없음 |
-| 9278304 | POLICY: UA `artex-selfupdate`(내부에서 ARTEX 콘솔이 업데이트하는 흔적) | `selfupdate/*.go` |
-| 9278305 | 백도어 콘솔 로그인 명령(`captcha`가 `!`로 시작) | 제3자 포렌식(tomicdd/artex 이미지) |
+<table>
+<tr><th nowrap>sid</th><th>찾는 것</th><th>근거&#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; </th></tr>
+<tr><td nowrap>9278301</td><td>UA <code>artex-enrich/</code></td><td><code>enrich/enrich.go</code></td></tr>
+<tr><td nowrap>9278302</td><td>UA <code>norma/</code></td><td>Norma SDK <code>tool/webfetch.go</code></td></tr>
+<tr><td nowrap>9278303</td><td>UA <code>Mozilla/5.0 (spa-api-recon</code></td><td><code>skills/api-recon/scripts/*.py</code></td></tr>
+<tr><td nowrap>9278304</td><td>POLICY: UA <code>artex-selfupdate</code></td><td><code>selfupdate/*.go</code></td></tr>
+<tr><td nowrap>9278305</td><td>백도어 콘솔 로그인 명령(<code>captcha</code>가 <code>!</code>로 시작)</td><td>제3자 포렌식(tomicdd/artex 이미지)</td></tr>
+<tr><td nowrap>9278306</td><td>포크 enrich UA(artifex·antifox·wsartex·prtseek)</td><td>포크 비교</td></tr>
+<tr><td nowrap>9278307</td><td>포크 도구 UA의 ARTEX 토큰(<code>(ARTEX)</code>, <code>ARTEX-…/</code>)</td><td>포크 비교</td></tr>
+<tr><td nowrap>9278308</td><td>POLICY: 포크 자가 업데이트 UA</td><td>포크 비교</td></tr>
+<tr><td nowrap>9278309~11</td><td>포크 정찰 UA(YCode-recon, prtseek, Artifex-ct-subs)</td><td>포크 비교</td></tr>
+</table>
 
-| 9278306 | 포크 enrich UA(artifex·antifox·wsartex·prtseek) | 포크 34개 비교 |
-| 9278307 | 포크 도구 UA의 ARTEX 토큰(`(ARTEX)`, `ARTEX-…/`) | 포크 05·focus-agent·포크 19 |
-| 9278308 | POLICY: 포크 자가 업데이트 UA | scopeweaver·pojun·artifex·antifox·prtseek·포크 01 |
-| 9278309~11 | 포크 정찰 UA(YCode-recon, prtseek 관찰, Artifex-ct-subs) | 각 포크 |
-
-포크 비교: `docs/forks-2026-11-21.json`. `norma/0.4`는 모든 포크에서 그대로였다.
-
-시험: `bash tests/run.sh RESULTS.md` (합성 pcap, 컨테이너 `--network none`).
+함께 쓰면 좋은 공개 묶음: [MalwareMustDie MMD-072-2026](https://blog.malwaremustdie.org/2026/11/mmd-072-2026-artex-detection-signature.html), [Theori aipt-detections](https://github.com/theori-io/aipt-detections). 9278301~04·07은 이 묶음들에도 있다.

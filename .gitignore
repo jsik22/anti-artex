@@ -2,3 +2,7 @@
 *.pcap
 *.pcapng
 lab-captures/
+__pycache__/
+*.pyc
+# replay_compare.sh가 pcap 옆에 만드는 경보 폴더
+*.alerts/
