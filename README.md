@@ -8,7 +8,7 @@
 
 ## 다루는 것
 
-- **IOC 정리**: 공개 보고의 IOC를 원문과 대조하고, 지표마다 현재 상태와 권고 조치(차단·사냥·기록용·차단 금지)를 붙인다.
+- **IOC 정리**: 공개 보고의 IOC를 원문과 대조하고, 지표마다 현재 상태와 권고 조치(차단·사냥·기록용·차단 금지)를 붙인다. → [`iocs/`](iocs/)
 - **탐지 룰**: 타 저장소, 상용 플랫폼 등을 통해 공개된 ARTEX 탐지 룰은 격리 실험실의 실측 트래픽과 정상 트래픽에 돌려 탐지 여부와 오탐을 확인하고, 이들이 다루지 않는 지문만 Snort 3·Suricata 룰로 새로 만든다. 새 룰도 같은 시험을 거친다.
 - **인프라·포크 추적**: 공개 정보와 제3자 색인만으로 ARTEX 인프라, LLM 중개 서비스, 포크·Docker 이미지 변화를 살핀다.
 
@@ -47,6 +47,7 @@ ARTEX를 원본 소스에서 빌드해 인터넷과 분리된 실험실에서 �
 <tr><th nowrap>경로</th><th>내용&#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; </th></tr>
 <tr><td nowrap><code>rules/snort3</code>, <code>rules/suricata</code></td><td>탐지 룰</td></tr>
 <tr><td nowrap><code>rules/draft/</code></td><td>실측으로 시험 중인 룰 초안</td></tr>
+<tr><td nowrap><a href="iocs/"><code>iocs/</code></a></td><td>정제한 IOC(지금 상태와 권고 조치 포함)</td></tr>
 <tr><td nowrap><code>tests/</code></td><td>회귀 시험 <code>run.sh</code>, 캡처 비교 <code>replay_compare.sh</code>, 분석 <code>rhythm.py</code>·<code>streams.py</code>·<code>score_sources.py</code>, 합성 케이스 <code>shape_fixtures.py</code></td></tr>
 <tr><td nowrap><code>docs/fingerprints.md</code></td><td>트래픽 지문과 근거</td></tr>
 <tr><td nowrap><code>docs/lab-mock-*.md</code></td><td>실험실 실측 기록</td></tr>
