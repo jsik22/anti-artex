@@ -30,7 +30,7 @@ in_container() {  # in_container IMAGE DEST SCRIPT OUTFILE
 
 S=/home/snorty/snort3
 in_container "$SURICATA_IMAGE" /t "suricata -V; mkdir -p /t/o && suricata -T -S /t/rules/suricata/anti-artex.rules -l /t/o 2>&1 | tail -1" "$WORK/suricata-check.txt"
-in_container "$SURICATA_IMAGE" /t "mkdir -p /t/o && suricata -r /t/fixtures.pcap -S /t/rules/suricata/anti-artex.rules -k none -l /t/o >/dev/null 2>&1; cat /t/o/eve.json" "$WORK/suricata-eve.json"
+in_container "$SURICATA_IMAGE" /t "mkdir -p /t/o && suricata --runmode single -r /t/fixtures.pcap -S /t/rules/suricata/anti-artex.rules -k none -l /t/o >/dev/null 2>&1; cat /t/o/eve.json" "$WORK/suricata-eve.json"
 in_container "$SNORT_IMAGE" /home/snorty/t "$S/bin/snort -c $S/etc/snort/snort.lua -R /home/snorty/t/rules/snort3/anti-artex.rules --warn-all -T 2>&1 | grep -E -i '92783|error|validated|Snort\+\+'" "$WORK/snort-check.txt"
 in_container "$SNORT_IMAGE" /home/snorty/t "$S/bin/snort -c $S/etc/snort/snort.lua -R /home/snorty/t/rules/snort3/anti-artex.rules -r /home/snorty/t/fixtures.pcap -k none -A alert_json -q" "$WORK/snort-alerts.json"
 

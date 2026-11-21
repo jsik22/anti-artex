@@ -99,12 +99,30 @@ def _pkt(src, dst, sport, dport, seq, ack, flags, payload=b""):
     return b"\x02\x00\x00\x00\x00\x02\x02\x00\x00\x00\x00\x01\x08\x00" + iph + tcp + payload
 
 
-def main(out_pcap, out_index):
-    cli, srv = "192.0.2.10", "198.51.100.20"
+def main(out_pcap, out_index, extra=True):
+    random.seed(20261121)  # IP ID를 고정해 실행마다 같은 pcap을 만든다(Suricata detection_filter 결과가 흔들리지 않게)
+    srv = "198.51.100.20"
     t = 1763424000.0
     frames, index = [], {}
     resp = b"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 2\r\n\r\nok"
-    for n, (cid, group, expect, desc, request) in enumerate(CASES):
+    cases = list(CASES)
+    if extra:
+        import os
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from shape_fixtures import CASES as SHAPE_CASES  # 요청 모양(9278394·95) 케이스
+        cases += SHAPE_CASES
+    # 로그인 연속(9278390): 다른 출발지에서 30초 안 로그인 POST 9건 → 7번째부터 탐지. 사람 모양은 3건.
+    burst = "192.0.2.20"
+    for k in (range(1, 10) if extra else ()):
+        body = json.dumps({"email": "admin@example.test", "password": f"guess{k}"})
+        cases.append((f"L-burst-{k}", "behavior", True if k >= 7 else None, f"로그인 POST 연속 {k}번째(실측 모양: 워커 curl)",
+                      req("POST", "/rest/user/login", "curl/7.88.1", JSON, body), burst))
+    for k in (range(1, 4) if extra else ()):
+        body = json.dumps({"email": "user@example.test", "password": f"typo{k}"})
+        cases.append((f"L-human-{k}", "benign", False, f"사람 로그인 {k}번째(틀리고 다시)", req("POST", "/rest/user/login", BROWSER, JSON, body), "192.0.2.30"))
+    for n, case in enumerate(cases):
+        cid, group, expect, desc, request = case[:5]
+        cli = case[5] if len(case) > 5 else "192.0.2.10"
         sport = 20000 + n
         index[sport] = {"id": cid, "group": group, "expect": expect, "desc": desc}
         cs, ss, q = 1000, 5000, len(request)
@@ -128,7 +146,7 @@ def main(out_pcap, out_index):
             f.write(struct.pack("<IIII", int(ts), int((ts % 1) * 1e6), len(fr), len(fr)) + fr)
     with open(out_index, "w", encoding="utf-8") as f:
         json.dump(index, f, ensure_ascii=False, indent=1)
-    print(f"cases={len(CASES)} frames={len(frames)}")
+    print(f"cases={len(cases)} frames={len(frames)}")
 
 
 if __name__ == "__main__":

@@ -18,7 +18,7 @@ for spec in "$@"; do
   rm -f "$WORK/r.rules"; cp "$rule" "$WORK/r.rules"; chmod 644 "$WORK/r.rules" "$WORK/cap.pcap"
   if [ "$engine" = suricata ]; then
     cid=$(docker create --network none --entrypoint sh "$SURICATA_IMAGE" -c \
-      "mkdir -p /t/o && suricata -r /t/cap.pcap -S /t/r.rules -k none -l /t/o >/t/o/run.log 2>&1; grep -c . /t/o/run.log >/dev/null; cat /t/o/eve.json 2>/dev/null; echo; grep -iE 'rules successfully loaded|error' /t/o/run.log | head -5 >&2")
+      "mkdir -p /t/o && suricata --runmode single -r /t/cap.pcap -S /t/r.rules -k none -l /t/o >/t/o/run.log 2>&1; grep -c . /t/o/run.log >/dev/null; cat /t/o/eve.json 2>/dev/null; echo; grep -iE 'rules successfully loaded|error' /t/o/run.log | head -5 >&2")
     docker cp "$WORK/." "$cid:/t" >/dev/null
     docker start -a "$cid" > "$OUT/$name.json" 2> "$OUT/$name.log" || true
   else

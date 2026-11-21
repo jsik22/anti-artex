@@ -50,4 +50,4 @@ CASES = [
 
 if __name__ == "__main__":
     fixtures.CASES = CASES
-    fixtures.main(sys.argv[1], sys.argv[2])
+    fixtures.main(sys.argv[1], sys.argv[2], extra=False)

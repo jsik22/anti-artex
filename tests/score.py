@@ -19,7 +19,7 @@ def load_hits(engine, path):
             continue
         e = json.loads(line)
         if engine == "suricata":
-            if e.get("event_type") == "alert" and e["alert"]["signature_id"] in LOCAL_SIDS and e.get("src_ip") == "192.0.2.10":
+            if e.get("event_type") == "alert" and e["alert"]["signature_id"] in LOCAL_SIDS and str(e.get("src_ip", "")).startswith("192.0.2."):
                 hit[e["src_port"]].add(e["alert"]["signature_id"])
         elif "rule" in e and e.get("dir") == "C2S":
             sid = int(e["rule"].split(":")[1])

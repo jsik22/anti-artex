@@ -1,5 +1,4 @@
 # anti-artex draft behavior rules (Snort 3). 실측 근거: docs/lab-mock-2026-11-21.md. HUNT 용도, 본 룰 판에 넣기 전 초안.
-alert http (msg:"LOCAL ARTEX HUNT login POST burst (credential variation)"; flow:to_server,established; http_method; content:"POST"; http_uri; pcre:"/(?:log_?in|sign_?in|auth)/i"; detection_filter:track by_src, count 6, seconds 30; classtype:attempted-user; sid:9278390; rev:1;)
 alert http (msg:"LOCAL ARTEX HUNT search parameter burst (input variation)"; flow:to_server,established; http_method; content:"GET"; http_uri; pcre:"/[?&](?:q|query|search|keyword|s)=/i"; detection_filter:track by_src, count 5, seconds 10; classtype:web-application-attack; sid:9278391; rev:1;)
 # 실패(2026-11-21): SPA는 없는 경로에도 200을 돌려줘 열거에서 404가 나오지 않음
 # alert http (msg:"LOCAL ARTEX HUNT 404 burst to one client (path enumeration)"; flow:to_client,established; http_stat_code; content:"404"; detection_filter:track by_dst, count 20, seconds 30; classtype:attempted-recon; sid:9278392; rev:1;)

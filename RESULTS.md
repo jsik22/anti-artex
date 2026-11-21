@@ -1,9 +1,9 @@
 # 회귀 시험 결과
 
-- 실행: 2026-11-21T03:35Z
+- 실행: 2026-11-21T17:12Z
 - 엔진: Suricata version 7.0.17, Snort++ 3.10.0.0
 
-**suricata**: 공격형 20/20 탐지(알려진 공백 0) · 정상 13/13 조용(오탐 0)
+**suricata**: 공격형 26/26 탐지(알려진 공백 0) · 정상 23/23 조용(오탐 0)
 
 | 케이스 | 묶음 | 기대 | 결과 | 설명 |
 |---|---|---|---|---|
@@ -40,8 +40,32 @@
 | X-enrich-generic | benign | False | - | 다른 제품의 -enrich UA |
 | X-artexpo | benign | False | - | ARTEX 비슷한 단어가 든 UA |
 | X-prtseek-word | benign | False | - | prtseek 블로그 방문 브라우저(쿼리) |
+| S-go-chrome | fork-ua | True | 탐지 9278394 | WebFetch 모양 + Chrome UA(브라우저 UA 무작위 포크 흉내) |
+| S-go-firefox | fork-ua | True | 탐지 9278394 | WebFetch 모양 + Firefox UA(Norma 검색 백엔드 UA) |
+| S-urllib-chrome | fork-ua | True | 탐지 9278395 | api-recon 스크립트 모양 + Chrome UA |
+| S-go-norma | orig | None | 탐지 9278302 | WebFetch 원래 모양(norma/0.4) |
+| S-urllib-spa | orig | None | 탐지 9278303 | api-recon 원래 모양 |
+| B-chrome-nav | benign | False | - | Chrome 페이지 이동(실측) |
+| B-chrome-xhr | benign | False | - | Chrome XHR(실측) |
+| B-go-default | benign | False | - | Go 프로그램 기본 UA(정직한 Go 도구) |
+| B-urllib-default | benign | False | - | Python urllib 기본 UA(실측) |
+| B-curl | benign | False | - | curl 기본(실측) |
+| B-wget | benign | False | - | wget 기본(실측) |
+| B-go-with-accept | benign | False | - | Go 클라이언트가 Accept까지 넣은 브라우저 흉내(모양 다름) |
+| L-burst-1 | behavior | None | - | 로그인 POST 연속 1번째(실측 모양: 워커 curl) |
+| L-burst-2 | behavior | None | - | 로그인 POST 연속 2번째(실측 모양: 워커 curl) |
+| L-burst-3 | behavior | None | - | 로그인 POST 연속 3번째(실측 모양: 워커 curl) |
+| L-burst-4 | behavior | None | - | 로그인 POST 연속 4번째(실측 모양: 워커 curl) |
+| L-burst-5 | behavior | None | - | 로그인 POST 연속 5번째(실측 모양: 워커 curl) |
+| L-burst-6 | behavior | None | - | 로그인 POST 연속 6번째(실측 모양: 워커 curl) |
+| L-burst-7 | behavior | True | 탐지 9278390 | 로그인 POST 연속 7번째(실측 모양: 워커 curl) |
+| L-burst-8 | behavior | True | 탐지 9278390 | 로그인 POST 연속 8번째(실측 모양: 워커 curl) |
+| L-burst-9 | behavior | True | 탐지 9278390 | 로그인 POST 연속 9번째(실측 모양: 워커 curl) |
+| L-human-1 | benign | False | - | 사람 로그인 1번째(틀리고 다시) |
+| L-human-2 | benign | False | - | 사람 로그인 2번째(틀리고 다시) |
+| L-human-3 | benign | False | - | 사람 로그인 3번째(틀리고 다시) |
 
-**snort**: 공격형 20/20 탐지(알려진 공백 0) · 정상 13/13 조용(오탐 0)
+**snort**: 공격형 26/26 탐지(알려진 공백 0) · 정상 23/23 조용(오탐 0)
 
 | 케이스 | 묶음 | 기대 | 결과 | 설명 |
 |---|---|---|---|---|
@@ -78,4 +102,28 @@
 | X-enrich-generic | benign | False | - | 다른 제품의 -enrich UA |
 | X-artexpo | benign | False | - | ARTEX 비슷한 단어가 든 UA |
 | X-prtseek-word | benign | False | - | prtseek 블로그 방문 브라우저(쿼리) |
+| S-go-chrome | fork-ua | True | 탐지 9278394 | WebFetch 모양 + Chrome UA(브라우저 UA 무작위 포크 흉내) |
+| S-go-firefox | fork-ua | True | 탐지 9278394 | WebFetch 모양 + Firefox UA(Norma 검색 백엔드 UA) |
+| S-urllib-chrome | fork-ua | True | 탐지 9278395 | api-recon 스크립트 모양 + Chrome UA |
+| S-go-norma | orig | None | 탐지 9278302 | WebFetch 원래 모양(norma/0.4) |
+| S-urllib-spa | orig | None | 탐지 9278303 | api-recon 원래 모양 |
+| B-chrome-nav | benign | False | - | Chrome 페이지 이동(실측) |
+| B-chrome-xhr | benign | False | - | Chrome XHR(실측) |
+| B-go-default | benign | False | - | Go 프로그램 기본 UA(정직한 Go 도구) |
+| B-urllib-default | benign | False | - | Python urllib 기본 UA(실측) |
+| B-curl | benign | False | - | curl 기본(실측) |
+| B-wget | benign | False | - | wget 기본(실측) |
+| B-go-with-accept | benign | False | - | Go 클라이언트가 Accept까지 넣은 브라우저 흉내(모양 다름) |
+| L-burst-1 | behavior | None | - | 로그인 POST 연속 1번째(실측 모양: 워커 curl) |
+| L-burst-2 | behavior | None | - | 로그인 POST 연속 2번째(실측 모양: 워커 curl) |
+| L-burst-3 | behavior | None | - | 로그인 POST 연속 3번째(실측 모양: 워커 curl) |
+| L-burst-4 | behavior | None | - | 로그인 POST 연속 4번째(실측 모양: 워커 curl) |
+| L-burst-5 | behavior | None | - | 로그인 POST 연속 5번째(실측 모양: 워커 curl) |
+| L-burst-6 | behavior | None | - | 로그인 POST 연속 6번째(실측 모양: 워커 curl) |
+| L-burst-7 | behavior | True | 탐지 9278390 | 로그인 POST 연속 7번째(실측 모양: 워커 curl) |
+| L-burst-8 | behavior | True | 탐지 9278390 | 로그인 POST 연속 8번째(실측 모양: 워커 curl) |
+| L-burst-9 | behavior | True | 탐지 9278390 | 로그인 POST 연속 9번째(실측 모양: 워커 curl) |
+| L-human-1 | benign | False | - | 사람 로그인 1번째(틀리고 다시) |
+| L-human-2 | benign | False | - | 사람 로그인 2번째(틀리고 다시) |
+| L-human-3 | benign | False | - | 사람 로그인 3번째(틀리고 다시) |
 

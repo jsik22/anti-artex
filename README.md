@@ -53,14 +53,14 @@ ARTEX를 원본 소스에서 빌드해 인터넷과 분리된 실험실에서 �
 <table>
 <tr><th nowrap>경로</th><th>내용&#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; </th></tr>
 <tr><td nowrap><code>rules/snort3</code>, <code>rules/suricata</code></td><td>탐지 룰</td></tr>
-<tr><td nowrap><code>rules/draft/</code></td><td>실측으로 시험 중인 룰 초안(행동, 요청 모양)</td></tr>
+<tr><td nowrap><code>rules/draft/</code></td><td>실측으로 시험 중인 룰 초안</td></tr>
 <tr><td nowrap><code>tests/</code></td><td>회귀 시험 <code>run.sh</code>, 캡처 비교 <code>replay_compare.sh</code>, 분석 <code>rhythm.py</code>·<code>streams.py</code>·<code>score_sources.py</code>, 합성 케이스 <code>shape_fixtures.py</code></td></tr>
 <tr><td nowrap><code>docs/fingerprints.md</code></td><td>트래픽 지문과 근거</td></tr>
 <tr><td nowrap><code>docs/lab-mock-*.md</code></td><td>실험실 실측 기록</td></tr>
 <tr><td nowrap><code>docs/forks-2026-11-21.json</code></td><td>포크 비교</td></tr>
 </table>
 
-## 룰 (v0.2.0)
+## 룰 (v0.3.0)
 
 <table>
 <tr><th nowrap>sid</th><th>찾는 것</th><th>근거&#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; </th></tr>
@@ -73,6 +73,9 @@ ARTEX를 원본 소스에서 빌드해 인터넷과 분리된 실험실에서 �
 <tr><td nowrap>9278307</td><td>포크 도구 UA의 ARTEX 토큰(<code>(ARTEX)</code>, <code>ARTEX-…/</code>)</td><td>포크 비교</td></tr>
 <tr><td nowrap>9278308</td><td>POLICY: 포크 자가 업데이트 UA</td><td>포크 비교</td></tr>
 <tr><td nowrap>9278309~11</td><td>포크 정찰 UA(YCode-recon, prtseek, Artifex-ct-subs)</td><td>포크 비교</td></tr>
+<tr><td nowrap>9278390</td><td>HUNT: 같은 출발지의 로그인 POST 30초 안 7건 이상</td><td>실험실 실측</td></tr>
+<tr><td nowrap>9278394</td><td>HUNT: 브라우저 UA + Go 기본 헤더 모양(UA만 바꾼 포크)</td><td>실험실 실측·포크 비교</td></tr>
+<tr><td nowrap>9278395</td><td>HUNT: 브라우저 UA + Python urllib 헤더 모양(UA만 바꾼 포크)</td><td>실험실 실측·포크 비교</td></tr>
 </table>
 
 함께 쓰면 좋은 공개 묶음: [MalwareMustDie MMD-072-2026](https://blog.malwaremustdie.org/2026/11/mmd-072-2026-artex-detection-signature.html), [Theori aipt-detections](https://github.com/theori-io/aipt-detections). 9278301~04·07은 이 묶음들에도 있다.
