@@ -121,21 +121,18 @@ bash tests/run.sh RESULTS.md
 
 ### 공개 묶음과 비교
 
-2026-11-22에 실험실 캡처와 정상 트래픽에 네 묶음을 함께 돌려 경보 수를 셌다. ARTEX 열은 ARTEX를 돌린 캡처에서 울린 경보(탐지), '정상 트래픽(오탐)' 열은 ARTEX 없이 만든 트래픽에서 울린 경보다. ARTEX 캡처는 버전마다 같은 대본으로 2회씩 돌린 것(요청 56건)이고, 정상 트래픽은 2개(요청 160건)다. CyberTissue 룰은 v0.4.0 기준이고, Suricata와 Snort 3의 경보 수가 같아 한 행으로 적었다. MMD는 MalwareMustDie MMD-072-2026, Theori는 Theori aipt-detections이고, 공개 룰 원문은 이 저장소에 넣지 않는다.
+2026-11-22 실험실 캡처에서 ARTEX 전용 룰의 경보 수를 셌다. ARTEX는 버전마다 같은 대본으로 2회씩(요청 56건) 돌렸고, 오탐은 ARTEX 없이 만든 정상 트래픽 2개(요청 160건)에서 셌다. MMD는 MalwareMustDie MMD-072-2026, Theori는 Theori aipt-detections다.
 
 <table>
-<tr><th nowrap>묶음</th><th nowrap>ARTEX v0.7.0</th><th nowrap>ARTEX v0.3.30&#12288; &#12288; &#12288; &#12288; &#12288; </th><th nowrap>정상 트래픽(오탐)&#12288; &#12288; &#12288; &#12288; &nbsp;</th></tr>
-<tr><td nowrap>CyberTissue</td><td nowrap>30</td><td nowrap>30</td><td nowrap>0</td></tr>
+<tr><th nowrap>묶음</th><th nowrap>ARTEX v0.7.0&#12288; &#12288; &#12288; &#12288; </th><th nowrap>ARTEX v0.3.30&#12288; &#12288; &#12288; </th><th nowrap>오탐&#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; </th></tr>
+<tr><td nowrap>CyberTissue(Snort 3·Suricata)</td><td nowrap>24</td><td nowrap>24</td><td nowrap>0</td></tr>
 <tr><td nowrap>Theori(Suricata)</td><td nowrap>24</td><td nowrap>0</td><td nowrap>0</td></tr>
-<tr><td nowrap>MMD(Suricata)</td><td nowrap>ARTEX 전용 6, 일반 도구 경고 4</td><td nowrap>일반 도구 경고 2</td><td nowrap>일반 도구 경고 5</td></tr>
-<tr><td nowrap>MMD(Snort 3)</td><td nowrap>ARTEX 전용 6, 일반 도구 경고 50</td><td nowrap>일반 도구 경고 32</td><td nowrap>일반 도구 경고 62</td></tr>
+<tr><td nowrap>MMD(Snort 3·Suricata)</td><td nowrap>6</td><td nowrap>0</td><td nowrap>0</td></tr>
 </table>
 
-- 경보 수는 잡은 요청 수가 아니라 울린 룰의 합이라, 숫자가 크다고 더 잘 잡는다는 뜻은 아니다. 같은 룰이 정상 트래픽에서도 울리면 ARTEX 탐지가 아니라 자동화 도구 일반에 대한 경고로 봐야 한다(MMD 일반 도구 경고).
-- 두 버전의 차이는 UA다. v0.7.0(가장 널리 퍼진 영문 재배포판)은 ARTEX 도구 UA(`norma/0.4`, `spa-api-recon`)를 그대로 써서 세 묶음 모두 UA 룰로 잡는다. v0.3.30(원 개발자라고 밝힌 계열)은 도구 UA를 표준 브라우저 UA 20개 중 하나로 무작위로 바꿔 UA 룰이 걸리지 않는다. 같은 캡처에서 CyberTissue는 도구 요청 24건을 헤더 모양 룰로 모두 잡았다.
-- 두 버전 모두 워커가 curl로 보낸 공격 요청은 ARTEX 전용 룰에 걸리지 않았다. CyberTissue의 로그인 연속 룰(9278390, 버전마다 6건)과 MMD의 일반 curl 경고만 반응했다.
-- v0.7.0에서 기록 프록시를 켜면 CyberTissue만 `Proxy-Connection` 룰(9278397)로 32건을 더 잡았고, 다른 묶음은 변화가 없었다.
+- v0.7.0은 ARTEX 도구 UA(`norma/0.4`, `spa-api-recon`)를 그대로 써서 UA 룰에 걸린다. v0.3.30은 도구 UA를 무작위 브라우저 UA로 바꿔 UA 룰이 걸리지 않고, CyberTissue의 헤더 모양 룰(9278394·95)만 잡았다.
+- v0.7.0에서 기록 프록시를 켜면 CyberTissue의 `Proxy-Connection` 룰(9278397)이 32건을 더 잡았다.
+- curl·Python 같은 도구 UA나 요청 빈도를 보는 범용 룰(MMD 일반 도구 경고, CyberTissue 로그인 연속)은 정상 운영 트래픽에서도 울릴 수 있어 표에서 뺐다.
 - 원본의 마지막 공개 버전 v0.3.15는 v0.7.0과 같은 모양이었다([1회차 실측 기록](docs/lab-mock-2026-11-21.md)).
-- MMD의 일반 도구 경고(curl·Python 등)는 Suricata 룰에만 1시간 1회 제한이 있어, Snort 3에서는 정상 헬스 체크·API 호출마다 경보가 난다. MMD 4260110은 Suricata 7.0.17에서 로드되지 않는다(`http.host`와 `nocase` 조합).
-- 정상 트래픽 0은 이 표본에서 오탐이 없었다는 뜻이다. 실험실에서 만든 표본(브라우저, curl 헬스 체크, Python API 클라이언트, wget)이라 실제 운영 트래픽의 다양성을 다 담지 못한다.
+- MMD 4260110은 Suricata 7.0.17에서 로드되지 않는다(`http.host`와 `nocase` 조합).
 - CyberTissue 룰 중 9278301~04·07은 두 묶음에도 있다. 함께 쓰면 된다: [MalwareMustDie MMD-072-2026](https://blog.malwaremustdie.org/2026/11/mmd-072-2026-artex-detection-signature.html), [Theori aipt-detections](https://github.com/theori-io/aipt-detections).
