@@ -12,9 +12,9 @@
 <tr><th nowrap>열</th><th>뜻&#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; </th></tr>
 <tr><td nowrap>indicator</td><td>지표 값</td></tr>
 <tr><td nowrap>type</td><td><code>ipv4</code>, <code>domain</code>, <code>container-image</code>, <code>azure-app-id</code>, <code>sha256</code>, <code>tls-cert-sha256</code>, <code>user-agent</code></td></tr>
-<tr><td nowrap>status_YYYY-MM-DD</td><td>기준일의 상태. IP는 제3자 색인(Shodan InternetDB)의 최근 관측 여부, 도메인은 공개 리졸버 해석 결과. User-Agent는 비운다</td></tr>
+<tr><td nowrap>status_YYYY-MM-DD</td><td>기준일의 상태. IP는 제3자 색인(Shodan InternetDB)의 최근 관측 여부, 도메인은 공개 리졸버 해석 결과, UA는 빈칸</td></tr>
 <tr><td nowrap>recommendation</td><td>권고 조치(아래 표)</td></tr>
-<tr><td nowrap>sources</td><td>지표가 나온 보고서. "MalwareMustDie 목록 경유"는 원문에서 직접 확인하지 못하고 MMD-072-2026 IOC 목록으로 확인한 것</td></tr>
+<tr><td nowrap>sources</td><td>지표가 나온 보고서. "MalwareMustDie 목록 경유"는 원문에서 확인하지 못하고 MMD-072-2026 IOC 목록으로 확인한 것</td></tr>
 <tr><td nowrap>note</td><td>정상 서비스 사유, 인증서 설명 등</td></tr>
 </table>
 
