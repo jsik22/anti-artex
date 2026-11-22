@@ -6,25 +6,26 @@
 
 ## 파일
 
-[`artex-iocs.csv`](artex-iocs.csv): 지표 104개(IPv4 67, 도메인 17, 컨테이너 이미지 9, Azure 앱 ID 7, 파일 해시 3, TLS 인증서 지문 1).
+[`artex-iocs.csv`](artex-iocs.csv): 지표 139개(IPv4 67, User-Agent 35, 도메인 17, 컨테이너 이미지 9, Azure 앱 ID 7, 파일 해시 3, TLS 인증서 지문 1).
 
 <table>
 <tr><th nowrap>열</th><th>뜻&#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; </th></tr>
 <tr><td nowrap>indicator</td><td>지표 값</td></tr>
-<tr><td nowrap>type</td><td><code>ipv4</code>, <code>domain</code>, <code>container-image</code>, <code>azure-app-id</code>, <code>sha256</code>, <code>tls-cert-sha256</code></td></tr>
-<tr><td nowrap>status_YYYY-MM-DD</td><td>기준일의 상태. IP는 제3자 색인(Shodan InternetDB)의 최근 관측 여부, 도메인은 공개 리졸버 해석 결과</td></tr>
+<tr><td nowrap>type</td><td><code>ipv4</code>, <code>domain</code>, <code>container-image</code>, <code>azure-app-id</code>, <code>sha256</code>, <code>tls-cert-sha256</code>, <code>user-agent</code></td></tr>
+<tr><td nowrap>status_YYYY-MM-DD</td><td>기준일의 상태. IP는 제3자 색인(Shodan InternetDB)의 최근 관측 여부, 도메인은 공개 리졸버 해석 결과. User-Agent는 비운다</td></tr>
 <tr><td nowrap>recommendation</td><td>권고 조치(아래 표)</td></tr>
-<tr><td nowrap>sources</td><td>지표가 나온 보고서. "MalwareMustDie 목록 경유"는 원문을 직접 읽지 못하고 MMD-072-2026 IOC 목록으로 확인한 것</td></tr>
+<tr><td nowrap>sources</td><td>지표가 나온 보고서. "MalwareMustDie 목록 경유"는 원문에서 직접 확인하지 못하고 MMD-072-2026 IOC 목록으로 확인한 것</td></tr>
 <tr><td nowrap>note</td><td>정상 서비스 사유, 인증서 설명 등</td></tr>
 </table>
 
 <table>
 <tr><th nowrap>권고 조치</th><th>뜻&#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; </th></tr>
 <tr><td nowrap>차단 검토</td><td>지금도 해석되는 도메인. 차단을 검토한다</td></tr>
-<tr><td nowrap>사냥(로그 대조)</td><td>최근 관측이 있는 지표. 과거 로그와 대조한다</td></tr>
+<tr><td nowrap>사냥(로그 대조)</td><td>최근 관측이 있는 지표, ARTEX·포크 고유 User-Agent. 과거 로그와 대조한다</td></tr>
 <tr><td nowrap>기록용</td><td>최근 관측이 없거나 해석되지 않는 지표. 과거 로그 대조용으로만 쓴다</td></tr>
 <tr><td nowrap>도메인만 차단</td><td>CDN 뒤에 있는 도메인. IP로 막으면 무관한 서비스까지 막힌다</td></tr>
 <tr><td nowrap>차단 금지, 사냥 전용</td><td>정상 서비스(위치 조회, 웹훅, OAST). 막지 말고 서버에서 나가는 연결을 찾는 데 쓴다</td></tr>
+<tr><td nowrap>단독 판단 금지</td><td>정상 도구·라이브러리·브라우저도 쓰는 User-Agent. 다른 지표와 함께 볼 때만 쓴다</td></tr>
 <tr><td nowrap>차단 금지</td><td>CDN·클라우드로 재할당됐거나 다른 서비스와 겹치는 IP</td></tr>
 <tr><td nowrap>오기 의심</td><td>원문 안에서 값이 서로 다르다. 다른 쪽 값을 쓴다</td></tr>
 </table>
@@ -47,7 +48,7 @@
 - **콘솔 제목**: ARTEX 웹 콘솔 기본 제목은 <code>ARTEX - 自主渗透测试控制台</code>이다(웹 앱 기본값). 번역·수정한 변형(영어·한국어·일본어 등)도 쓰인다(Hunt.io). 기본 포트는 8787/tcp.
 - **TLS 인증서 지문**: CSV의 <code>tls-cert-sha256</code>은 발급자 <code>O=ARTEX</code> 인증서다. ARTEX 원본 소스에 없는 설정이라 운영자·포크 쪽 값이다. 모든 ARTEX 콘솔에 있지는 않다.
 - **운영자 파일 표식**: 파일 공유에 <code>artex_probe_*.txt</code>를 쓰고 지우는 정찰 흔적(Hunt.io). 운영자가 만든 이름이라 다른 운영자에게는 없을 수 있다.
-- **User-Agent**: 저장소의 [룰](../README.md#룰-v030)을 본다.
+- **User-Agent**: 공개 보고서에 나온 값은 CSV의 <code>user-agent</code>에 있다. 운영자가 쉽게 바꾸는 값이라 없다고 안심하지 않는다. ARTEX 원본 코드의 UA와 요청 모양은 저장소의 [룰](../README.md#룰-v030)을 본다.
 
 ## 출처
 
