@@ -1,9 +1,9 @@
 # 회귀 시험 결과
 
-- 실행: 2026-11-21T17:12Z
+- 실행: 2026-11-22T11:34Z
 - 엔진: Suricata version 7.0.17, Snort++ 3.10.0.0
 
-**suricata**: 공격형 26/26 탐지(알려진 공백 0) · 정상 23/23 조용(오탐 0)
+**suricata**: 공격형 29/29 탐지(알려진 공백 0) · 정상 26/26 조용(오탐 0)
 
 | 케이스 | 묶음 | 기대 | 결과 | 설명 |
 |---|---|---|---|---|
@@ -43,6 +43,9 @@
 | S-go-chrome | fork-ua | True | 탐지 9278394 | WebFetch 모양 + Chrome UA(브라우저 UA 무작위 포크 흉내) |
 | S-go-firefox | fork-ua | True | 탐지 9278394 | WebFetch 모양 + Firefox UA(Norma 검색 백엔드 UA) |
 | S-urllib-chrome | fork-ua | True | 탐지 9278395 | api-recon 스크립트 모양 + Chrome UA |
+| S-goconn-chrome | fork-ua | True | 탐지 9278396 | v0.7.0 WebFetch 모양(Connection: close 추가) + Chrome UA |
+| S-proxied-urllib | fork-ua | True | 탐지 9278396 | 기록 프록시를 거친 api-recon 요청(실측: 원 개발자 계열 v0.3.30) + 브라우저 UA |
+| S-proxy-conn-curl | proxy-leak | True | 탐지 9278397 | 기록 프록시를 거친 워커 curl(실측): Proxy-Connection이 원 서버까지 남음 |
 | S-go-norma | orig | None | 탐지 9278302 | WebFetch 원래 모양(norma/0.4) |
 | S-urllib-spa | orig | None | 탐지 9278303 | api-recon 원래 모양 |
 | B-chrome-nav | benign | False | - | Chrome 페이지 이동(실측) |
@@ -51,6 +54,9 @@
 | B-urllib-default | benign | False | - | Python urllib 기본 UA(실측) |
 | B-curl | benign | False | - | curl 기본(실측) |
 | B-wget | benign | False | - | wget 기본(실측) |
+| B-go-conn-default | benign | False | - | Go 기본 UA + Connection: close(정직한 Go 도구) |
+| B-python-requests | benign | False | - | python-requests 기본 모양 |
+| B-chrome-close | benign | False | - | Chrome이 Connection: close로 보낸 이동(헤더 많음) |
 | B-go-with-accept | benign | False | - | Go 클라이언트가 Accept까지 넣은 브라우저 흉내(모양 다름) |
 | L-burst-1 | behavior | None | - | 로그인 POST 연속 1번째(실측 모양: 워커 curl) |
 | L-burst-2 | behavior | None | - | 로그인 POST 연속 2번째(실측 모양: 워커 curl) |
@@ -65,7 +71,7 @@
 | L-human-2 | benign | False | - | 사람 로그인 2번째(틀리고 다시) |
 | L-human-3 | benign | False | - | 사람 로그인 3번째(틀리고 다시) |
 
-**snort**: 공격형 26/26 탐지(알려진 공백 0) · 정상 23/23 조용(오탐 0)
+**snort**: 공격형 29/29 탐지(알려진 공백 0) · 정상 26/26 조용(오탐 0)
 
 | 케이스 | 묶음 | 기대 | 결과 | 설명 |
 |---|---|---|---|---|
@@ -105,6 +111,9 @@
 | S-go-chrome | fork-ua | True | 탐지 9278394 | WebFetch 모양 + Chrome UA(브라우저 UA 무작위 포크 흉내) |
 | S-go-firefox | fork-ua | True | 탐지 9278394 | WebFetch 모양 + Firefox UA(Norma 검색 백엔드 UA) |
 | S-urllib-chrome | fork-ua | True | 탐지 9278395 | api-recon 스크립트 모양 + Chrome UA |
+| S-goconn-chrome | fork-ua | True | 탐지 9278396 | v0.7.0 WebFetch 모양(Connection: close 추가) + Chrome UA |
+| S-proxied-urllib | fork-ua | True | 탐지 9278396 | 기록 프록시를 거친 api-recon 요청(실측: 원 개발자 계열 v0.3.30) + 브라우저 UA |
+| S-proxy-conn-curl | proxy-leak | True | 탐지 9278397 | 기록 프록시를 거친 워커 curl(실측): Proxy-Connection이 원 서버까지 남음 |
 | S-go-norma | orig | None | 탐지 9278302 | WebFetch 원래 모양(norma/0.4) |
 | S-urllib-spa | orig | None | 탐지 9278303 | api-recon 원래 모양 |
 | B-chrome-nav | benign | False | - | Chrome 페이지 이동(실측) |
@@ -113,6 +122,9 @@
 | B-urllib-default | benign | False | - | Python urllib 기본 UA(실측) |
 | B-curl | benign | False | - | curl 기본(실측) |
 | B-wget | benign | False | - | wget 기본(실측) |
+| B-go-conn-default | benign | False | - | Go 기본 UA + Connection: close(정직한 Go 도구) |
+| B-python-requests | benign | False | - | python-requests 기본 모양 |
+| B-chrome-close | benign | False | - | Chrome이 Connection: close로 보낸 이동(헤더 많음) |
 | B-go-with-accept | benign | False | - | Go 클라이언트가 Accept까지 넣은 브라우저 흉내(모양 다름) |
 | L-burst-1 | behavior | None | - | 로그인 POST 연속 1번째(실측 모양: 워커 curl) |
 | L-burst-2 | behavior | None | - | 로그인 POST 연속 2번째(실측 모양: 워커 curl) |
