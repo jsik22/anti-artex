@@ -59,6 +59,7 @@
 <tr><td nowrap>Check Point</td><td><a href="https://research.checkpoint.com/2026/hacking-on-autopilot-inside-artex-cybercrime-campaigns/">hacking on autopilot inside artex cybercrime campaigns</a></td></tr>
 <tr><td nowrap>CrowdStrike</td><td><a href="https://www.crowdstrike.com/en-us/blog/unknown-threat-actor-uses-artex-to-target-south-korean-finance/">unknown threat actor uses artex to target south korean finance</a></td></tr>
 <tr><td nowrap>CrowdStrike</td><td><a href="https://www.crowdstrike.com/en-us/blog/vapor-panda-uses-artex-to-scale-global-campaign/">vapor panda uses artex to scale global campaign</a></td></tr>
+<tr><td nowrap>Datadog Security Labs</td><td><a href="https://securitylabs.datadoghq.com/articles/artex-agentic-attacks-aws-environments/">artex agentic attacks aws environments</a></td></tr>
 <tr><td nowrap>ExtraHop</td><td><a href="https://www.extrahop.com/blog/artext-inside-an-agentic-attack-framework">artext inside an agentic attack framework</a></td></tr>
 <tr><td nowrap>Eye Security</td><td><a href="https://labs.eye.security/how-we-defended-against-an-ai-driven-attack/">how we defended against an ai driven attack</a></td></tr>
 <tr><td nowrap>GitGuardian</td><td><a href="https://blog.gitguardian.com/an-artex-build-ships-no-secret-scanner-in-our-lab-it-found-the-secrets-anyway/">an artex build ships no secret scanner in our lab it found the secrets</a></td></tr>
