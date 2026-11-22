@@ -1,4 +1,4 @@
-# anti-artex v0.4.1 (Snort 3)
+# anti-artex v0.5.0 (Snort 3)
 # ARTEX(자율 AI 침투 도구) 기본 설정 트래픽 지문. 근거는 docs/fingerprints.md(소스 정적 분석).
 # 자체 제작·자체 시험이며 계속 업데이트 중이다. 실측 전이니 차단 대신 탐지(alert) 모드로 먼저 돌린다. POLICY·HUNT 룰은 사냥·정책용이다.
 alert http any any -> any any ( msg:"LOCAL ARTEX enrich prober User-Agent (artex-enrich)"; flow:to_server,established; http_header:field user-agent; content:"artex-enrich/",depth 13,fast_pattern; classtype:attempted-recon; sid:9278301; rev:1; )

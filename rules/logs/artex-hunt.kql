@@ -1,0 +1,20 @@
+// anti-artex 로그 사냥 쿼리(KQL). 근거: docs/lab-mock-2026-11-23.md.
+// 테이블·필드 이름은 환경에 맞게 바꾼다(예: W3CIISLog의 cIP·csUserAgent, CommonSecurityLog의 SourceIP·RequestClientApplication).
+// 검증: Kusto.Language 분석기로 구문·의미 오류 0건(W3CIISLog 스키마 기준). 실험실 캡처에 같은 집계를 적용한 결과는 문서 참조.
+let WebLogs = W3CIISLog | project TimeGenerated, SrcIp = cIP, UA = csUserAgent, Method = csMethod, Path = csUriStem;
+let NatExclude = dynamic([]);   // 여러 사람이 한 IP로 나가는 사무실 NAT·사내 프록시 출구 IP를 넣는다
+// 1) 60초 안 서로 다른 브라우저 UA 4개 이상(요청마다 UA를 무작위로 바꾸는 계열)
+WebLogs
+| where UA startswith "Mozilla/5.0" and SrcIp !in (NatExclude)
+| summarize DistinctBrowserUA = dcount(UA), Requests = count() by SrcIp, bin(TimeGenerated, 60s)
+| where DistinctBrowserUA >= 4
+| order by DistinctBrowserUA desc;
+// 2) 30초 안 로그인 POST 7건 이상(IDS 9278390과 같은 기준)
+WebLogs
+| where Method == "POST" and Path matches regex @"(?i)/(rest/user/login|login|signin|auth|session)"
+| summarize LoginPosts = count() by SrcIp, bin(TimeGenerated, 30s)
+| where LoginPosts >= 7;
+// 3) ARTEX 도구·포크 UA(IDS 9278301~11과 같은 내용)
+WebLogs
+| where UA startswith "norma/" or UA has_any ("spa-api-recon", "artex-enrich", "antifox-enrich", "artifex-enrich", "wsartex-enrich", "prtseek", "YCode-recon")
+| summarize Requests = count(), UAs = make_set(UA, 10), First = min(TimeGenerated), Last = max(TimeGenerated) by SrcIp

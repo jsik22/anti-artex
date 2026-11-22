@@ -1,0 +1,56 @@
+# anti-artex 로그 사냥 룰(Sigma). 근거: docs/lab-mock-2026-11-23.md(생성 대본 112회, 정상 출발지 103개).
+# 웹 접근 로그(프록시·WAF·웹 서버)용. 헤더 순서가 없는 로그라 UA·경로·출발지만 본다.
+# 검증: sigma-cli 4.0.1 check 오류 0건, Splunk 변환 확인.
+# 1) UA 다양성: 한 출발지가 60초 안에 서로 다른 브라우저 UA를 4개 이상 쓴다(요청마다 UA를 무작위로 바꾸는 ARTEX 계열).
+#    실험실: 원 개발자 계열 v0.3.30 실행 48회 중 29회, 정상 출발지 103개 중 0개. 정상 표본의 NAT 출발지는 사람 2명까지였다.
+#    사람이 많은 사무실 NAT·사내 프록시 출구는 제외 목록에 넣는다.
+title: ARTEX-like random browser User-Agent rotation from one source (base)
+id: e71f042e-9911-48cf-a2a2-8d533df78c38
+name: anti_artex_browser_ua_request
+status: experimental
+logsource:
+  category: webserver
+detection:
+  selection:
+    cs-user-agent|startswith: 'Mozilla/5.0'
+  condition: selection
+level: informational
+---
+title: ARTEX-like random browser User-Agent rotation from one source
+id: 812f973f-71b2-47f4-bfe5-543cbd200732
+status: experimental
+correlation:
+  type: value_count
+  rules:
+    - anti_artex_browser_ua_request
+  group-by:
+    - c-ip
+  timespan: 60s
+  condition:
+    field: cs-user-agent
+    gte: 4
+falsepositives:
+  - 여러 사람이 한 공인 IP로 나가는 사무실 NAT, 사내 프록시 출구, CDN·로드밸런서 뒤에서 출발지가 프록시 IP로 보이는 경우
+level: medium
+---
+# 2) ARTEX 도구 UA 계열(norma/0.4, spa-api-recon, 포크 enrich UA). IDS 룰 9278301~11과 같은 내용을 로그에서 본다.
+title: ARTEX tool or fork User-Agent in web access log
+id: 204cbe20-7e60-475a-b99d-459ead8584a4
+status: experimental
+logsource:
+  category: webserver
+detection:
+  selection:
+    - cs-user-agent|startswith: 'norma/'
+    - cs-user-agent|contains:
+        - 'spa-api-recon'
+        - 'artex-enrich'
+        - 'antifox-enrich'
+        - 'artifex-enrich'
+        - 'wsartex-enrich'
+        - 'prtseek'
+        - 'YCode-recon'
+  condition: selection
+falsepositives:
+  - Norma SDK를 쓰는 다른 에이전트(norma/는 ARTEX 전용이 아님)
+level: medium
