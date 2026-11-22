@@ -33,6 +33,9 @@ CASES = [
     ("S-go-chrome", "fork-ua", True, "WebFetch 모양 + Chrome UA(브라우저 UA 무작위 포크 흉내)", go_shape(CHROME)),
     ("S-go-firefox", "fork-ua", True, "WebFetch 모양 + Firefox UA(Norma 검색 백엔드 UA)", go_shape(FIREFOX, "/search?q=x")),
     ("S-urllib-chrome", "fork-ua", True, "api-recon 스크립트 모양 + Chrome UA", urllib_shape(CHROME, "/static/js/main.js")),
+    # v0.4.1: 헤더 값이 기본값과 달라도 이름·순서가 같으면 두 엔진 모두 잡아야 함(Snort 3도 이름 기준)
+    ("S-go-chrome-deflate", "fork-ua", True, "WebFetch 모양, Accept-Encoding 값만 다름 + Chrome UA", raw("GET", "/", [("Host", H), ("User-Agent", CHROME), ("Accept-Encoding", "gzip, deflate")])),
+    ("S-urllib-chrome-gzip", "fork-ua", True, "api-recon 모양, 헤더 값만 다름 + Chrome UA", raw("GET", "/", [("Accept-Encoding", "gzip"), ("Host", H), ("User-Agent", CHROME), ("Connection", "keep-alive")])),
     # v0.4.0(2026-11-22 실측): v0.7.0 WebFetch는 Connection: close를 더하고, 기록 프록시는 urllib 요청을 같은 모양으로 다시 쓴다
     ("S-goconn-chrome", "fork-ua", True, "v0.7.0 WebFetch 모양(Connection: close 추가) + Chrome UA", raw("GET", "/", [("Host", H), ("User-Agent", CHROME), ("Accept-Encoding", "gzip"), ("Connection", "close")])),
     ("S-proxied-urllib", "fork-ua", True, "기록 프록시를 거친 api-recon 요청(실측: 원 개발자 계열 v0.3.30) + 브라우저 UA", raw("GET", "/main.js", [("Host", H), ("User-Agent", FIREFOX), ("Accept-Encoding", "identity"), ("Connection", "close")])),
