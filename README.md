@@ -57,10 +57,13 @@ ARTEX를 원본 소스에서 빌드해 인터넷과 분리된 실험실에서 �
 
 ## 룰 (v0.5.0)
 
+> **최근 업데이트(2026-11-23, v0.5.0)**: 헤더 순서가 남지 않는 웹 접근 로그에서 쓰는 사냥 룰(Sigma·KQL)을 더했다. IDS 룰(Snort 3·Suricata) 동작은 v0.4.1과 같다. 지난 변경은 [CHANGELOG](CHANGELOG.md).
+
 <table>
-<tr><th nowrap>파일</th><th>엔진&#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; </th></tr>
-<tr><td nowrap><a href="rules/suricata/anti-artex.rules">rules/suricata/anti-artex.rules</a></td><td>Suricata 7</td></tr>
-<tr><td nowrap><a href="rules/snort3/anti-artex.rules">rules/snort3/anti-artex.rules</a></td><td>Snort 3</td></tr>
+<tr><th nowrap>파일</th><th nowrap>엔진</th><th>최근 업데이트&#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; </th></tr>
+<tr><td nowrap><a href="rules/suricata/anti-artex.rules">rules/suricata/anti-artex.rules</a></td><td nowrap>Suricata 7</td><td>2026-11-23, <a href="https://github.com/jsik22/anti-artex/releases/tag/v0.5.0">v0.5.0</a></td></tr>
+<tr><td nowrap><a href="rules/snort3/anti-artex.rules">rules/snort3/anti-artex.rules</a></td><td nowrap>Snort 3</td><td>2026-11-23, <a href="https://github.com/jsik22/anti-artex/releases/tag/v0.5.0">v0.5.0</a></td></tr>
+<tr><td nowrap><a href="rules/logs/">rules/logs/</a></td><td nowrap>Sigma·KQL</td><td>2026-11-23, <a href="https://github.com/jsik22/anti-artex/releases/tag/v0.5.0">v0.5.0</a></td></tr>
 </table>
 
 룰 파일은 버전마다 [릴리스](https://github.com/jsik22/anti-artex/releases)에도 올린다(파일 이름에 버전을 붙임).
