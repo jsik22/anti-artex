@@ -1,4 +1,4 @@
-indicator,type,status_2026-11-25,recommendation,sources,note
+indicator,type,status_2026-11-26,recommendation,sources,note
 0de14c77-b9b0-4137-9360-34878a929827,azure-app-id,,사냥(로그 대조),Microsoft,
 2399d300-6fca-4e6a-a686-399fefe75b83,azure-app-id,,사냥(로그 대조),ConnectWise / Huntress(MalwareMustDie 목록 경유),
 24205314-2b89-4e07-a2a4-579e898a5640,azure-app-id,,사냥(로그 대조),Microsoft,
@@ -56,7 +56,7 @@ xcai.pro,domain,해석 안 됨,기록용(지금 해석 안 됨),CrowdStrike; Hun
 169.128.55.214,ipv4,최근 관측 없음,기록용(최근 관측 없음),Datadog Security Labs,
 176.65.144.71,ipv4,최근 관측 있음,사냥(로그 대조),JPCERT/CC,
 178.15.54.129,ipv4,최근 관측 없음,오기 의심: Microsoft 2026-11-06 글 사냥 쿼리 값. 같은 글 IOC 표는 178.16.54.129,Microsoft,
-178.16.54.129,ipv4,최근 관측 있음,사냥(로그 대조),Microsoft,
+178.16.54.129,ipv4,최근 관측 없음,사냥(로그 대조),Microsoft,
 187.15.88.186,ipv4,최근 관측 없음,기록용(최근 관측 없음),Microsoft,
 187.15.89.186,ipv4,최근 관측 없음,기록용(최근 관측 없음),Microsoft,
 187.15.90.217,ipv4,최근 관측 없음,기록용(최근 관측 없음),Microsoft,
