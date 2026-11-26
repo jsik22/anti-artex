@@ -1,6 +1,6 @@
 # anti-artex
 
-자율 AI 침투 도구 ARTEX와 그 포크·재배포판에 대한 탐지 자료를 모은다.
+자율 AI 침투 도구 ARTEX와 그 포크·재배포판에 대한 탐지 자료를 모은다. [CyberTissue](https://github.com/jsik22/cybertissue)의 하위 프로젝트다.
 
 여러 보고서와 저장소에 흩어진 ARTEX IOC와 탐지 룰의 유효성, 정확성, 실효성을 직접 확인하고 실측해서, 국내 운영자가 ARTEX에 대응할 때 믿고 참고할 수 있는 자료를 한곳에 쌓아 가는 것을 지향한다.
 
