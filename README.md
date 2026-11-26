@@ -130,17 +130,17 @@ bash tests/run.sh RESULTS.md
 
 <table>
 <tr><th nowrap>묶음</th><th nowrap>ARTEX v0.7.0&#12288; &#12288; &#12288; &#12288; </th><th nowrap>ARTEX v0.3.30&#12288; &#12288; &#12288; </th><th nowrap>오탐&#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; </th></tr>
-<tr><td nowrap>CyberTissue(Snort 3·Suricata)</td><td nowrap>24</td><td nowrap>24</td><td nowrap>0</td></tr>
+<tr><td nowrap>anti-artex(Snort 3·Suricata)</td><td nowrap>24</td><td nowrap>24</td><td nowrap>0</td></tr>
 <tr><td nowrap>Theori(Suricata)</td><td nowrap>24</td><td nowrap>0</td><td nowrap>0</td></tr>
 <tr><td nowrap>MMD(Snort 3·Suricata)</td><td nowrap>6</td><td nowrap>0</td><td nowrap>0</td></tr>
 </table>
 
-- v0.7.0은 ARTEX 도구 UA(`norma/0.4`, `spa-api-recon`)를 그대로 써서 UA 룰에 걸린다. v0.3.30은 도구 UA를 무작위 브라우저 UA로 바꿔 UA 룰이 걸리지 않고, CyberTissue의 헤더 모양 룰(9278394·95)만 잡았다.
-- v0.7.0에서 기록 프록시를 켜면 CyberTissue의 `Proxy-Connection` 룰(9278397)이 32건을 더 잡았다.
-- curl·Python 같은 도구 UA나 요청 빈도를 보는 범용 룰(MMD 일반 도구 경고, CyberTissue 로그인 연속)은 정상 운영 트래픽에서도 울릴 수 있어 표에서 뺐다.
+- v0.7.0은 ARTEX 도구 UA(`norma/0.4`, `spa-api-recon`)를 그대로 써서 UA 룰에 걸린다. v0.3.30은 도구 UA를 무작위 브라우저 UA로 바꿔 UA 룰이 걸리지 않고, anti-artex의 헤더 모양 룰(9278394·95)만 잡았다.
+- v0.7.0에서 기록 프록시를 켜면 anti-artex의 `Proxy-Connection` 룰(9278397)이 32건을 더 잡았다.
+- curl·Python 같은 도구 UA나 요청 빈도를 보는 범용 룰(MMD 일반 도구 경고, anti-artex 로그인 연속)은 정상 운영 트래픽에서도 울릴 수 있어 표에서 뺐다.
 - 원본의 마지막 공개 버전 v0.3.15는 v0.7.0과 같은 모양이었다([1회차 실측 기록](docs/lab-mock-2026-11-21.md)).
 - MMD 4260110은 Suricata 7.0.17에서 로드되지 않는다(`http.host`와 `nocase` 조합).
-- CyberTissue 룰 중 9278301~04·07은 두 묶음에도 있다. 함께 쓰면 된다: [MalwareMustDie MMD-072-2026](https://blog.malwaremustdie.org/2026/11/mmd-072-2026-artex-detection-signature.html), [Theori aipt-detections](https://github.com/theori-io/aipt-detections).
+- anti-artex 룰 중 9278301~04·07은 두 묶음에도 있다. 함께 쓰면 된다: [MalwareMustDie MMD-072-2026](https://blog.malwaremustdie.org/2026/11/mmd-072-2026-artex-detection-signature.html), [Theori aipt-detections](https://github.com/theori-io/aipt-detections).
 
 ## 로그 사냥 룰
 
