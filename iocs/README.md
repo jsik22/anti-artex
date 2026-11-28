@@ -2,11 +2,11 @@
 
 공개 보고서에 나온 ARTEX 관련 IOC를 원문과 다시 대조하고, 지표마다 지금 상태와 권고 조치를 붙였다.
 
-> TLP:CLEAR. 기준일 2026-11-27. IP는 재할당될 수 있으니 차단 전에 자기 환경의 로그·문맥과 함께 확인한다.
+> TLP:CLEAR. 기준일 2026-11-28. IP는 재할당될 수 있으니 차단 전에 자기 환경의 로그·문맥과 함께 확인한다.
 
 ## 파일
 
-[`artex-iocs.csv`](artex-iocs.csv): 지표 139개(IPv4 67, User-Agent 35, 도메인 17, 컨테이너 이미지 9, Azure 앱 ID 7, 파일 해시 3, TLS 인증서 지문 1).
+[`artex-iocs.csv`](artex-iocs.csv): 지표 145개(IPv4 71, User-Agent 35, 도메인 17, 컨테이너 이미지 9, Azure 앱 ID 8, 파일 해시 4, TLS 인증서 지문 1).
 
 <table>
 <tr><th nowrap>열</th><th>뜻&#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; &#12288; </th></tr>
@@ -69,6 +69,7 @@
 <tr><td nowrap>JPCERT/CC</td><td><a href="https://www.jpcert.or.jp/at/2026/at260030.html">at260030.html</a></td></tr>
 <tr><td nowrap>Microsoft</td><td><a href="https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/">storm 0940 uses artex agentic ai connectwise supply chain compromise</a></td></tr>
 <tr><td nowrap>Microsoft</td><td><a href="https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/">artex abuse expands as cybercriminals target financial sector</a></td></tr>
+<tr><td nowrap>SentinelOne</td><td><a href="https://www.sentinelone.com/blog/artex-unmasked-the-rise-of-ai-powered-artex-in-cybercrime-espionage/">artex unmasked the rise of ai powered artex in cybercrime espionage</a></td></tr>
 <tr><td nowrap>The Hacker News</td><td><a href="https://thehackernews.com/2026/11/backdoored-docker-image-for-artex-ai.html">backdoored docker image for artex ai.html</a></td></tr>
 <tr><td nowrap>Unit 42</td><td><a href="https://unit42.paloaltonetworks.com/artex-and-ai-powered-red-teaming-tools/">artex and ai powered red teaming tools</a></td></tr>
 <tr><td nowrap>Wiz</td><td><a href="https://www.wiz.io/blog/artex-in-the-wild-storm-0940-expands-targeting-of-it-and-software-vendors">artex in the wild storm 0940 expands targeting of it and software vend</a></td></tr>
